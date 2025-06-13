@@ -6,7 +6,7 @@ Given The user enter correct Manan portal URL "https://manan.numpyninja.com"
 When The user should be able to land on Manan portal with Title "Medical Triage Assistant"
 And User Click on Sign in button
 Then User should navingate to Sign in pop up window.
-When When User enters valid username "NewSdetuser2" and valid password "Abcd1234!"
+When When User enters valid username "testuser1" and valid password "testuser1"
 And User click on SignIn button
 Then Then User should be redirected to Manan App page 
 
