@@ -1,5 +1,3 @@
-<<<<<<< HEAD
-=======
 Feature: SignIn validation feature for Manan Portal
 
     Feature Description
@@ -11,4 +9,3 @@ Then User should navingate to Sign in pop up window.
 When When User enters valid username "testuser1" and valid password "testuser1"
 And User click on SignIn button
 Then Then User should be redirected to Manan App page "https://manan.numpyninja.com/app"
->>>>>>> main

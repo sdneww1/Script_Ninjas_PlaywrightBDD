@@ -1,5 +1,3 @@
-<<<<<<< HEAD
-=======
 import { createBdd } from 'playwright-bdd';
 import { expect } from '@playwright/test';
 
@@ -43,4 +41,3 @@ Then('Then User should be redirected to Manan App page {string}', async ({page},
  await expect(page).toHaveURL(appPage);
 
 });
->>>>>>> main
