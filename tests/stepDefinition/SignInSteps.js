@@ -52,8 +52,7 @@ When('When User enters valid Email Address and Password', async ({ signinPage })
 When('User click on SignIn button', async ({ signinPage }) => {
   // await page.getByRole('button', { name: 'Sign In' }).first().click();
   // await page.pause();
-  await signinPage.SignInbtnfirst();
-  
+  await signinPage.SignInbtnfirst();  
 });
 
 Then('Then User should be redirected to Manan App page {string}', async ({ signinPage }, appPage) => {
