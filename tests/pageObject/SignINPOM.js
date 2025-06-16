@@ -11,13 +11,13 @@ export class SignInPage {
 
     }
 
-    async NavigatetoUrl(url) {
-        await this.page.goto(url);
-    }
+    // async NavigatetoUrl(url) {
+    //     await this.page.goto(url);
+    // }
 
-    async mananTitle(title) {
-        await expect(this.page).toHaveTitle(title);
-    }
+    // async mananTitle(title) {
+    //     await expect(this.page).toHaveTitle(title);
+    // }
 
     async SignInbtnzero() {
         await this.signINbtn0.click();
@@ -33,7 +33,7 @@ export class SignInPage {
         await this.signINbtn1.click();
     }
 
-    async validUNandPwd(UN, Pwd) {
+    async validUNandPwd(UN,Pwd) {
         await this.userName.fill(UN);
         await this.passWord.fill(Pwd);
     }

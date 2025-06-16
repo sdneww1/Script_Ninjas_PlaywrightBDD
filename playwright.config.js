@@ -5,8 +5,8 @@ import dotenv from 'dotenv';
 
 const testDir = defineBddConfig({
    importTestFrom:'tests/fixtures/Fixtures.js',
-   paths: ['tests/features/SignIn.feature'],
-   require:['tests/stepDefinition/SignInSteps.js'],
+   paths: ['tests/features/***.feature'],
+   require:['tests/stepDefinition/***.js'],
 });
 
 dotenv.config({

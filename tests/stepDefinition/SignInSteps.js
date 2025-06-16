@@ -5,11 +5,9 @@ const { Given, When, Then } = createBdd(test);
 
 
 
-Given('The User navigate to Manan Home Page', async ({ signinPage }) => {
-  // Step: Given The User navigate to Manan Home Page
-  // From: tests\features\SignIn.feature:5:9
-  await signinPage.NavigatetoUrl(process.env.URL);
-});
+// Given('The User navigate to Manan Home Page', async ({ signinPage }) => {
+//   await signinPage.NavigatetoUrl(process.env.BaseURL);
+// });
 
 
 // Given('The user enter correct Manan portal URL {string}', async ({ signinPage }, url) => {
@@ -17,10 +15,10 @@ Given('The User navigate to Manan Home Page', async ({ signinPage }) => {
 //   await signinPage.NavigatetoUrl(url);
 // });
 
-When('The user should be able to land on Manan portal with Title {string}', async ({ signinPage }, title) => {
-  //await expect(page).toHaveTitle(title);
-  await signinPage.mananTitle(title);
-});
+// Then('The user should be able to land on Manan portal with Title {string}', async ({ signinPage }, title) => {
+//   //await expect(page).toHaveTitle(title);
+//   await signinPage.mananTitle(title);
+// });
 
 When('User Click on Sign in button', async ({ signinPage }) => {
 //await page.getByRole('button', { name: 'Sign In' }).nth(0).click();

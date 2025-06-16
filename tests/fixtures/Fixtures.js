@@ -2,7 +2,7 @@ import {test as base} from 'playwright-bdd'
 //import { SignInPage } from '../pageObject/SignINPOM'
 import * as Pages from './pages';
 
-const { SignInPage } = Pages;
+const { SignInPage , HomePage } = Pages;
 
 const createTestFunction = (PageClass) => async ({page}, use) =>{
  await use(new PageClass(page));
@@ -10,5 +10,6 @@ const createTestFunction = (PageClass) => async ({page}, use) =>{
 
 
 export const test = base.extend({
-  signinPage: createTestFunction(SignInPage)
+  signinPage: createTestFunction(SignInPage),
+  homePage: createTestFunction(HomePage)
   });
