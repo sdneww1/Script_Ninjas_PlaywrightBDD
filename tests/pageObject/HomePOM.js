@@ -7,7 +7,7 @@ export class HomePage {
     }
 
     async NavigatetoHomeUrl() {
-        await this.page.goto(process.env.BaseURL);
+        await this.page.goto('https://manan.numpyninja.com');
     }
 
     async mananTitle(title) {

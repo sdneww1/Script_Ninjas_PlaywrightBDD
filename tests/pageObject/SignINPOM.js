@@ -39,9 +39,9 @@ export class SignInPage {
     }
 
     async mananAppURL(appPage) {
-        this.page.once('dialog', async dialog => {
-            await dialog.accept(); // Clicks OK
-        });
+        // this.page.once('dialog', async dialog => {
+        //     await dialog.accept(); // Clicks OK
+        // });
         await expect(this.page).toHaveURL(appPage);
     }
 }

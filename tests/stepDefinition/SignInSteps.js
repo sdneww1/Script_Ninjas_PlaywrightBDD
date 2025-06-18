@@ -38,7 +38,7 @@ Then('User should navingate to Sign in pop up window.', async ({ signinPage }) =
 When('When User enters valid Email Address and Password', async ({ signinPage }) => {
   // Step: When When User enters valid Email Address and Password
   // From: tests\features\SignIn.feature:9:9
-  await signinPage.validUNandPwd(process.env.EMAIL, process.env.PASSWORD);
+  await signinPage.validUNandPwd('testuser1', 'testuser1');
   
 });
 // When('When User enters valid username {string} and valid password {string}', async ({ signinPage }, UN, Pwd) => {
@@ -59,6 +59,5 @@ Then('Then User should be redirected to Manan App page {string}', async ({ signi
 //  });
 //  await expect(page).toHaveURL(appPage);
 
-await signinPage.mananAppURL(appPage);
-
+await signinPage.mananAppURL(appPage), { timeout: 60000 };
 });
