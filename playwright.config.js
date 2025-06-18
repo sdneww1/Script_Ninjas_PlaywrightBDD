@@ -9,6 +9,15 @@ const testDir = defineBddConfig({
    require:['tests/stepDefinition/***.js'],
    
 });
+// const testDir = defineBddConfig({
+//   features: 'tests/features/***.feature',
+//   steps: [
+//     'tests/stepDefinition/***.js',
+//     'tests/fixtures/fixture.js',
+//     // 'tests/hooks/Hooks.js'
+//   ]
+// });
+
 
 dotenv.config({
   path: `./env/.env.${process.env.ENV}`
@@ -27,7 +36,7 @@ dotenv.config({
  */
 export default defineConfig({
   testDir,
- //  testDir: './tests',
+  //  testDir: './tests',
   /* Run tests in files in parallel */
   fullyParallel: true,
   /* Fail the build on CI if you accidentally left test.only in the source code. */
@@ -51,15 +60,29 @@ export default defineConfig({
 
   /* Configure projects for major browsers */
   projects: [
+    { name: 'setup', testDir: './', testMatch: [/auth\/.*authsetup\.js$/] },
+     { name: 'firefoxsetup', testDir: './', testMatch: [/auth\/.*authsetupFirefox\.js$/] },
+
+     
     {
       name: 'chromium',
-      use: { ...devices['Desktop Chrome'] },
+      use: {
+        ...devices['Desktop Chrome'],
+        //  storageState: 'tests/.auth/signin.json' ,
+
+        storageState: 'playwright/.auth/login.json'
+      },
+       dependencies: ['setup'],
     },
 
-    // {
-    //   name: 'firefox',
-    //   use: { ...devices['Desktop Firefox'] },
-    // },
+    {
+      name: 'firefox',
+      use: { ...devices['Desktop Firefox'] ,
+          storageState: 'playwright/.auth/loginfirefox.json',
+      },
+            dependencies: ['firefoxsetup'],
+
+    },
 
     // {
     //   name: 'webkit',

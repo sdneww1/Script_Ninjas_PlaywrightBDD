@@ -10,9 +10,6 @@ export class HomePage {
         await this.page.goto('https://manan.numpyninja.com');
     }
 
-    async mananTitle(title) {
-        await expect(this.page).toHaveTitle(title);
-    }
 
     }
 //export{ SignInPage };

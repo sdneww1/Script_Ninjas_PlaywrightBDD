@@ -5,10 +5,15 @@ const { Given, When, Then } = createBdd(test);
 
 
 Given('The user enter correct Manan portal URL', async ({ homePage }) => {
-  await homePage.NavigatetoHomeUrl();
+  //  await homePage.NavigatetoHomeUrl();
+    await homePage.openBaseURL();
 });
 
-Then('The user should be able to land on Manan portal with Title {string}', async ({ homePage }, title) => {
+When('The user should be able to land on Manan portal with Title {string}', async ({ homePage }, homeTitle) => {
   //await expect(page).toHaveTitle(title);
-  await homePage.mananTitle(title);
+ // await homePage.mananTitle(title);
+  //  const title = await homePage.
+  // expect(title).toBe(expectedTitle);
+   await homePage.getHomePageTitle(homeTitle);
+
 });
