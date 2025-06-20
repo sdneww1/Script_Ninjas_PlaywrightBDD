@@ -4,38 +4,29 @@ export class SignInPage {
 
     constructor(page) {
         this.page = page;
-        this.signINbtn0 = page.getByRole('button', { name: 'Sign In' }).nth(0);
-        this.signINbtn1 = page.getByRole('button', { name: 'Sign In' }).first();
         this.userName = page.getByPlaceholder('Enter your username');
         this.passWord = page.getByPlaceholder('Enter your password');
-
+        this.errorMsg = page.getByText('Please fill in all fields');
+    }
+    
+    async validUNandPwd() {
+        await this.userName.fill(process.env.EMAIL);
+        await this.passWord.fill(process.env.PASSWORD);
     }
 
-    // async NavigatetoUrl(url) {
-    //     await this.page.goto(url);
-    // }
+    async InvalidCredentials(Username,Password) {
+  await this.userName.fill(Username || '');
+  await this.passWord.fill(Password || '');
+}
 
-    // async mananTitle(title) {
-    //     await expect(this.page).toHaveTitle(title);
-    // }
 
-    async SignInbtnzero() {
-        await this.signINbtn0.click();
-    }
+    async errorMessage(errorText)
+    {
+    //    const errorText = await this.erro
+    // rMsg.textContent();
+    //    console.log(errorText); // Should print: Please fill in all fields
+          await expect(this.errorMsg).toHaveText(errorText);
 
-    async signInPopup() {
-        await this.page.waitForSelector('div[role="dialog"]');
-        // Check for welcome message
-        const welcomeHeading = this.page.locator('h2:has-text("Welcome to MANAN")');
-        await expect(welcomeHeading).toBeVisible();
-    }
-    async SignInbtnfirst() {
-        await this.signINbtn1.click();
-    }
-
-    async validUNandPwd(UN,Pwd) {
-        await this.userName.fill(UN);
-        await this.passWord.fill(Pwd);
     }
 
     async mananAppURL(appPage) {
@@ -43,6 +34,42 @@ export class SignInPage {
             await dialog.accept(); // Clicks OK
         });
         await expect(this.page).toHaveURL(appPage);
+    }
+
+    async mananFormURL(){
+        await expect(this.page).toHaveURL(/.*\/app/);
+    }
+
+    async authSuccessfulPopUp()
+    {
+        const popup = this.page.locator('div.grid.gap-1');
+        await expect(popup).toContainText('Authentication Successful');
+    }
+
+    async authSuccessfulPopUpMsg()
+    {
+        const popupMsg = this.page.locator('div.grid.gap-1');
+        await expect(popupMsg).toContainText('Welcome to MANAN Medical Assistant.');
+    }
+
+    async loginFailedPopUp(expectedMessage)
+    {
+        // const popupLoginFailed = this.page.locator('div.grid gap-1');
+        // await expect(popupLoginFailed).toContainText(loginfailederror);
+
+
+        const errorTitle = this.page.locator('div.text-sm.font-semibold');
+       const actualMessage = await errorTitle.textContent();
+
+  // Trim whitespace and compare
+  await expect(actualMessage?.trim()).toBe(expectedMessage);
+
+    }
+
+    async loginFailedPopUpMsg()
+    {
+        const popupLoginFailedMsg = this.page.locator('div.grid.gap-1');
+        await expect(popupMsg).toContainText('Incorrect password.');
     }
 }
 //export{ SignInPage };

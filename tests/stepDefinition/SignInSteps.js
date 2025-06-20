@@ -1,64 +1,57 @@
 import { createBdd } from 'playwright-bdd';
-//import { expect } from '@playwright/test';
+import { expect } from '@playwright/test';
 import { test } from '../fixtures/Fixtures';
 const { Before, After, Given, When, Then } = createBdd(test);
 
 
-
-// Given('The User navigate to Manan Home Page', async ({ signinPage }) => {
-//   await signinPage.NavigatetoUrl(process.env.BaseURL);
-// });
-
-
-// Given('The user enter correct Manan portal URL {string}', async ({ signinPage }, url) => {
-//   //await page.goto(url);
-//   await signinPage.NavigatetoUrl(url);
-// });
-
-// Then('The user should be able to land on Manan portal with Title {string}', async ({ signinPage }, title) => {
-//   //await expect(page).toHaveTitle(title);
-//   await signinPage.mananTitle(title);
-// });
-
-When('User Click on Sign in button', async ({ signinPage }) => {
-//await page.getByRole('button', { name: 'Sign In' }).nth(0).click();
- await signinPage.SignInbtnzero();
+When('User navigates to Sign in pop up window.', async ({ homePage }) => {
+  await homePage.signInPopup();
 });
 
-Then('User should navingate to Sign in pop up window.', async ({ signinPage }) => {
-  //   await page.waitForSelector('div[role="dialog"]');
-  // // Check for welcome message
-  // const welcomeHeading = page.locator('h2:has-text("Welcome to MANAN")');
-  // await expect(welcomeHeading).toBeVisible();
-  await signinPage.signInPopup();
-
+When('the user clicks the Sign-In button on the Sign-In popup', async ({ homePage }) => {
+  await homePage.SignInbtnPopupPage();
 });
 
-
-When('When User enters valid Email Address and Password', async ({ signinPage }) => {
-  // Step: When When User enters valid Email Address and Password
-  // From: tests\features\SignIn.feature:9:9
-  await signinPage.validUNandPwd(process.env.EMAIL, process.env.PASSWORD);
-  
+When('User enters valid Username and Password', async ({ signinPage }) => {
+  await signinPage.validUNandPwd();  
 });
-// When('When User enters valid username {string} and valid password {string}', async ({ signinPage }, UN, Pwd) => {
-//   // await page.getByPlaceholder('Enter your username').fill(UN);
-//   // await page.getByPlaceholder('Enter your password').fill(Pwd);
-//   await signinPage.validUNandPwd(UN, Pwd);
-// });
 
-When('User click on SignIn button', async ({ signinPage }) => {
-  // await page.getByRole('button', { name: 'Sign In' }).first().click();
-  // await page.pause();
+When('User click on SignIn button in sign in pop up window', async ({ signinPage }) => {
   await signinPage.SignInbtnfirst();  
+});  
+      
+Then('User should be redirected to Manan Form page', async ({ signinPage }) => {
+  await signinPage.mananFormURL();
 });
 
-Then('Then User should be redirected to Manan App page {string}', async ({ signinPage }, appPage) => {
-//  page.once('dialog', async dialog => {
-//   await dialog.accept(); // Clicks OK
-//  });
-//  await expect(page).toHaveURL(appPage);
+// Then('Then User should be redirected to Manan App page {string}', async ({ signinPage }, appPage) => {
+// //  page.once('dialog', async dialog => {
+// //   await dialog.accept(); // Clicks OK
+// //  });
+// //  await expect(page).toHaveURL(appPage);
 
-await signinPage.mananAppURL(appPage);
+// //await signinPage.mananAppURL(appPage);
+
+// });
+
+When('User enters valid {string} and {string}', async ({ signinPage }, Username, Password) => {
+  await signinPage.InvalidCredentials(Username,Password);
+});
+
+Then('User should get error message {string}', async ({ signinPage }, errorText) => {
+ await signinPage.errorMessage(errorText);  
+});
+
+Then('User should be redirected to Manan Form page with Registration Successful Pop up', async ({ signinPage }) => {
+ await signinPage.authSuccessfulPopUp();
+
+});
+
+Then('User should be redirected to Manan Form page with Welcome to MANAN Medical Assistant. Pop up Message', async ({ signinPage }) => { 
+  await signinPage.authSuccessfulPopUpMsg();
+});
+
+Then('User should get pop up error message {string}', async ({ signinPage }, expectedMessage) => {
+  await signinPage.loginFailedPopUp(expectedMessage);
 
 });

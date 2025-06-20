@@ -2,10 +2,10 @@
   "cookies": [
     {
       "name": "manan_session",
-      "value": "s%3AXx0t3vVht4keOTmWKfAY2snnuRemZfzN.bIzSiEQ9o0UNE2zxgQNkSulU6sghM681CEgy5T93kq0",
+      "value": "s%3AwWsz9WCkfDd_g5H_HedjGUI_TOw6kswA.UHG5I9%2FfarCU2SdHTVGyhUy%2BGIVCDZXKjKc4C1LEKMg",
       "domain": "manan.numpyninja.com",
       "path": "/",
-      "expires": 1750309023.857716,
+      "expires": 1750403515.396347,
       "httpOnly": true,
       "secure": true,
       "sameSite": "Lax"

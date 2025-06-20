@@ -33,10 +33,9 @@ const { Given, When, Then } = createBdd(test);
   
 // });
 
-Given('The user is authenticated and on the Manan App page {string}', async ({ page }, urlapp) => {
-  await page.goto(urlapp);
-  await expect(page).toHaveURL(urlapp);
-});
+// Given('The user is authenticated and on the Manan App page {string}', async ({ dashboardPage }) => {
+//   await dashboardPage.dashappUrl();
+// });
 
 When('User clicks on Dashboard button', async ({ dashboardPage }) => {
   await dashboardPage.clickDashboardButton();
@@ -45,5 +44,5 @@ When('User clicks on Dashboard button', async ({ dashboardPage }) => {
 Then('User should navigate to Dashboard Page {string}', async ({ page }, partialUrl) => {
   await expect(page).toHaveURL(new RegExp(partialUrl));
   await expect(page.getByText('Welcome to Your Medical Dashboard')).toBeVisible();
-  page.pause
+
 });

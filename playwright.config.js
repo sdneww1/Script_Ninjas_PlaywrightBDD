@@ -3,18 +3,25 @@ import { defineConfig, devices } from '@playwright/test';
 import { defineBddConfig } from 'playwright-bdd'
 import dotenv from 'dotenv';
 
+dotenv.config({
+  path: `./env/.env.${process.env.ENV}`
+})
+
+
 const testDir = defineBddConfig({
   //  importTestFrom:'tests/fixtures/Fixtures.js',
   //  paths: ['tests/features/***.feature'],
   //  require:['tests/stepDefinition/***.js'],
-   features: 'tests/features/***.feature',
- //features: 'tests/features/DashboardPage.feature',
-   steps: ['tests/stepDefinition/***steps.js','tests/fixtures/Fixtures.js',
+  //features: 'tests/features/***.feature',
+  // features: ['tests/features/HomePage.feature', 'tests/features/DashboardPage.feature'],
+  features: ['tests/features/HomePage.feature','tests/features/HomePageSignIN.feature'],
+  steps: ['tests/stepDefinition/***steps.js', 'tests/fixtures/Fixtures.js'
     // "tests/hooks/Hooks.js" 
   ],
- //steps: ['tests/stepDefinition/DashboardSteps.js','tests/fixtures/Fixtures.js','tests/hooks/hookfile.js']
-    //"tests/hooks/Hooks.js" 
-  
+
+  //steps: ['tests/stepDefinition/DashboardSteps.js','tests/fixtures/Fixtures.js','tests/hooks/hookfile.js']
+  //"tests/hooks/Hooks.js" 
+
 
 });
 // const testDir = defineBddConfig({
@@ -27,9 +34,9 @@ const testDir = defineBddConfig({
 // });
 
 
-dotenv.config({
-  path: `./env/.env.${process.env.ENV}`
-})
+// dotenv.config({
+//   path: `./env/.env.${process.env.ENV}`
+// })
 
 /**
  * Read environment variables from file.
@@ -54,7 +61,7 @@ export default defineConfig({
   /* Opt out of parallel tests on CI. */
   workers: process.env.CI ? 1 : undefined,
   /* Reporter to use. See https://playwright.dev/docs/test-reporters */
-  reporter: 'html',
+  reporter:[ ['html'],['allure-playwright']],
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
   use: {
     /* Base URL to use in actions like `await page.goto('/')`. */
@@ -62,7 +69,7 @@ export default defineConfig({
 
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
     baseURL: process.env.BaseURL || 'https://manan.numpyninja.com',
-    storageState: 'playwright/.auth/login.json', // ✅ this loads your session
+    //storageState: 'playwright/.auth/login.json', // ✅ this loads your session
     trace: 'on-first-retry',
     screenshot: 'only-on-failure',
     video: 'retain-on-failure',
@@ -73,29 +80,42 @@ export default defineConfig({
 
   /* Configure projects for major browsers */
   projects: [
-    { name: 'setup', testDir: './', testMatch: [/auth\/.*authsetup\.js$/] },
-     { name: 'firefoxsetup', testDir: './', testMatch: [/auth\/.*authsetupFirefox\.js$/] },
+   // { name: 'setup', testDir: './', testMatch: [/auth\/.*authsetup\.js$/] },
+    // { name: 'chromium-auth', testDir: './tests/'},
+    //  { name: 'firefoxsetup', testDir: './', testMatch: [/auth\/.*authsetupFirefox\.js$/] },
 
-     
     {
-      name: 'chromium',
+      name: 'chromium-auth',
+      grep: /@nonauth/,
+      grepInvert: /@auth/,
       use: {
         ...devices['Desktop Chrome'],
-        //  storageState: 'tests/.auth/signin.json' ,
-
-        storageState: 'playwright/.auth/login.json'
       },
-       dependencies: ['setup'],
     },
 
-    {
-      name: 'firefox',
-      use: { ...devices['Desktop Firefox'] ,
-          storageState: 'playwright/.auth/loginfirefox.json',
-      },
-            dependencies: ['firefoxsetup'],
+  // { name: 'setup', testDir: './', testMatch: [/auth\/.*authsetup\.js$/] },
+    // {
+    //   name: 'chromium',
+    //   grep: /@auth/,
+    //   grepInvert: /@nonauth/,
+      
+    //   use: {
+    //     ...devices['Desktop Chrome'],
+    //     //  storageState: 'tests/.auth/signin.json' ,
 
-    },
+    //     storageState: 'playwright/.auth/login.json'
+    //   },
+    // // dependencies: ['setup'],
+    // },
+
+    // {
+    //   name: 'firefox',
+    //   use: { ...devices['Desktop Firefox'] ,
+    //       storageState: 'playwright/.auth/loginfirefox.json',
+    //   },
+    //         dependencies: ['firefoxsetup'],
+
+    // },
 
     // {
     //   name: 'webkit',
