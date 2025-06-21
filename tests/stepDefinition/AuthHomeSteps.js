@@ -2,13 +2,7 @@ import { createBdd } from 'playwright-bdd';
 import { test } from '../fixtures/Fixtures';
 import { expect } from '@playwright/test';
 
-const { Given, When, Then } = createBdd(test);
-Given('The user is authenticated and user navigated to the Manan Form page', async ({ page }) => {
-   //await homePage.appnavigteURL();
-  //await homePage.aappnavigteURL();
-  await page.goto('/app');
-  
-});
+
 
 // When('User click on Try Now link', async ({ homePage }) => {
 //   await homePage.trynowlink();

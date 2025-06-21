@@ -6,6 +6,12 @@ import { expect } from '@playwright/test';
 const { Given, When, Then } = createBdd(test);
 
 
+Given('The user is authenticated and user navigated to the Manan Form page', async ({ homePage }) => {
+   //await homePage.appnavigteURL();
+  //await homePage.aappnavigteURL();
+  await homePage.appnavigteURL();
+  
+});
 
 // // Given('The user enter correct Manan portal URL {string}', async ({page},url) => {
 // //   // Step: Given The user enter correct Manan portal URL

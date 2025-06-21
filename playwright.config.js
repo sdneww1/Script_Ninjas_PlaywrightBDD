@@ -12,9 +12,9 @@ const testDir = defineBddConfig({
   //  importTestFrom:'tests/fixtures/Fixtures.js',
   //  paths: ['tests/features/***.feature'],
   //  require:['tests/stepDefinition/***.js'],
-  //features: 'tests/features/***.feature',
+  features: 'tests/features/***.feature',
   // features: ['tests/features/HomePage.feature', 'tests/features/DashboardPage.feature'],
-  features: ['tests/features/HomePage.feature','tests/features/HomePageSignIN.feature'],
+  //features: ['tests/features/HomePage.feature','tests/features/HomePageSignIN.feature'],
   steps: ['tests/stepDefinition/***steps.js', 'tests/fixtures/Fixtures.js'
     // "tests/hooks/Hooks.js" 
   ],
@@ -82,7 +82,7 @@ export default defineConfig({
   projects: [
    // { name: 'setup', testDir: './', testMatch: [/auth\/.*authsetup\.js$/] },
     // { name: 'chromium-auth', testDir: './tests/'},
-    //  { name: 'firefoxsetup', testDir: './', testMatch: [/auth\/.*authsetupFirefox\.js$/] },
+     // { name: 'firefoxsetup', testDir: './', testMatch: [/auth\/.*firefoxsetup\.js$/] },
 
     {
       name: 'chromium-auth',
@@ -93,23 +93,36 @@ export default defineConfig({
       },
     },
 
-  // { name: 'setup', testDir: './', testMatch: [/auth\/.*authsetup\.js$/] },
-    // {
-    //   name: 'chromium',
-    //   grep: /@auth/,
-    //   grepInvert: /@nonauth/,
+//  { name: 'setup', testDir: './', testMatch: [/auth\/.*authsetup\.js$/] },
+    {
+      name: 'chromium',
+      grep: /@auth/,
+      grepInvert: /@nonauth/,
       
-    //   use: {
-    //     ...devices['Desktop Chrome'],
-    //     //  storageState: 'tests/.auth/signin.json' ,
+      use: {
+        ...devices['Desktop Chrome'],
+        //  storageState: 'tests/.auth/signin.json' ,
 
-    //     storageState: 'playwright/.auth/login.json'
-    //   },
-    // // dependencies: ['setup'],
+        storageState: 'playwright/.auth/login.json'
+      },
+  //  dependencies: ['setup'],
+    },
+     
+    // {
+    //   name: 'firefox-nonauth',
+    //     grep: /@nonauth/,
+    //   grepInvert: /@auth/,
+    //     timeout: 90 * 1000, 
+    //   use: { ...devices['Desktop Firefox'] ,
+    //         },
+
     // },
 
     // {
-    //   name: 'firefox',
+    //   name: 'firefoxsetup1',
+    //     grep: /@auth/,
+    //   grepInvert: /@nonauth/,
+    //     timeout: 60 * 1000, // ⬅️ 60 seconds (you can customize)
     //   use: { ...devices['Desktop Firefox'] ,
     //       storageState: 'playwright/.auth/loginfirefox.json',
     //   },
@@ -117,10 +130,12 @@ export default defineConfig({
 
     // },
 
-    // {
-    //   name: 'webkit',
-    //   use: { ...devices['Desktop Safari'] },
-    // },
+    {
+      name: 'webkit',
+      grep: /@nonauth/,
+      grepInvert: /@auth/,
+      use: { ...devices['Desktop Safari'] },
+    },
 
     /* Test against mobile viewports. */
     // {

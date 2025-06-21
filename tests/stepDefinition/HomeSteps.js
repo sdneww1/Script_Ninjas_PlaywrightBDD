@@ -6,6 +6,9 @@ const { Given, When, Then } = createBdd(test);
 
 Given('The user enter correct Manan portal URL', async ({ homePage }) => {
     await homePage.openBaseURL();
+    
+      //await this.page.getByText('Welcome to MANAN').waitFor();
+
 });
 
 When('The user should be able to land on Manan portal with Title {string}', async ({ homePage }, homeTitle) => {
@@ -13,7 +16,7 @@ When('The user should be able to land on Manan portal with Title {string}', asyn
 });
 
 When('User click on Sign in button', async ({ homePage }) => {
- await homePage.SignInbtnzero();
+ await homePage.SignInbtnHome();
 });
 
 // Then('User should navingate to Sign in pop up window.', async ({ homePage }) => {

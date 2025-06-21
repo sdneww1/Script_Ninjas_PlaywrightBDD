@@ -1,4 +1,3 @@
-
 Feature: Manan Form Page Access via Home Page with Authentication
 
     @nonauth
@@ -98,11 +97,11 @@ Feature: Manan Form Page Access via Home Page with Authentication
             | madhuri@gmail.com | madhuri@gmail.com | Login Failed  |
 
 
-    @nonauth
-    Scenario Outline: Verify navigation to Sign-Up form via 'Sign Up' button on Welcome popup window
-        Given The user enter correct Manan portal URL
-        When User click on Sign in button
-        And User navigates to Sign in pop up window.
+    # @nonauth
+    # Scenario Outline: Verify navigation to Sign-Up form via 'Sign Up' button on Welcome popup window
+    #     Given The user enter correct Manan portal URL
+    #     When User click on Sign in button
+    #     And User navigates to Sign in pop up window.
 
 
 #---------------------------------
