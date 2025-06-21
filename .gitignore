@@ -1,11 +1,14 @@
-
-# Playwright
+# Node.js
 node_modules/
-/allure-report/
-/allure-results/
-/test-results/
-/playwright-report/
-/blob-report/
-/playwright/.cache/
-/.features-gen/features/
-/.features-gen/
+
+# Playwright reports
+allure-report/
+allure-results/
+test-results/
+playwright-report/
+blob-report/
+playwright/.cache/
+
+# Generated features
+.features-gen/
+.features-gen/features/
