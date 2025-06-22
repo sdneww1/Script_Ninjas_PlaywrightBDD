@@ -3,15 +3,40 @@ import { defineConfig, devices } from '@playwright/test';
 import { defineBddConfig } from 'playwright-bdd';
 import dotenv from 'dotenv';
 
-const testDir = defineBddConfig({
-   importTestFrom:'tests/fixtures/Fixtures.js',
-   paths: ['tests/features/***.feature'],
-   require:['tests/stepDefinition/***.js'],
-});
-
 dotenv.config({
   path: `./env/.env.${process.env.ENV}`
 })
+
+
+const testDir = defineBddConfig({
+  //  importTestFrom:'tests/fixtures/Fixtures.js',
+  //  paths: ['tests/features/***.feature'],
+  //  require:['tests/stepDefinition/***.js'],
+  features: 'tests/features/***.feature',
+  // features: ['tests/features/HomePage.feature', 'tests/features/DashboardPage.feature'],
+  //features: ['tests/features/HomePageSignIN.feature'],
+  steps: ['tests/stepDefinition/***steps.js', 'tests/fixtures/Fixtures.js'
+    // "tests/hooks/Hooks.js" 
+  ],
+
+  //steps: ['tests/stepDefinition/DashboardSteps.js','tests/fixtures/Fixtures.js','tests/hooks/hookfile.js']
+  //"tests/hooks/Hooks.js" 
+
+
+});
+// const testDir = defineBddConfig({
+//   features: 'tests/features/***.feature',
+//   steps: [
+//     'tests/stepDefinition/***.js',
+//     'tests/fixtures/fixture.js',
+//     // 'tests/hooks/Hooks.js'
+//   ]
+// });
+
+
+// dotenv.config({
+//   path: `./env/.env.${process.env.ENV}`
+// })
 
 /**
  * Read environment variables from file.
@@ -26,7 +51,7 @@ dotenv.config({
  */
 export default defineConfig({
   testDir,
- //  testDir: './tests',
+  //  testDir: './tests',
   /* Run tests in files in parallel */
   fullyParallel: true,
   /* Fail the build on CI if you accidentally left test.only in the source code. */
@@ -36,48 +61,105 @@ export default defineConfig({
   /* Opt out of parallel tests on CI. */
   workers: process.env.CI ? 1 : undefined,
   /* Reporter to use. See https://playwright.dev/docs/test-reporters */
-  reporter: 'html',
+  reporter:[ ['html'],['allure-playwright']],
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
   use: {
     /* Base URL to use in actions like `await page.goto('/')`. */
     // baseURL: 'http://localhost:3000',
 
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
+    baseURL: process.env.BaseURL || 'https://manan.numpyninja.com',
+    //storageState: 'playwright/.auth/login.json', // ✅ this loads your session
     trace: 'on-first-retry',
-    screenshot:'only-on-failure',
-    video:'retain-on-failure',
+    screenshot: 'only-on-failure',
+    video: 'retain-on-failure',
+    actionTimeout: 10000,          // Optional: timeout per action (like click, fill)
+    navigationTimeout: 20000       // Optional: timeout for page loads
+
   },
 
   /* Configure projects for major browsers */
   projects: [
-{
-  name: 'chromium',
-  use: {
-    browserName: 'chromium',
-    viewport: null, // disables Playwright default viewport
-    launchOptions: {
-      args: ['--start-maximized'],
-    },
-  },
-},
+
 
 
 
     // {
     //   name: 'chromium',
     //   use: { ...devices['Desktop Chrome'] },
-    // },
+=======
+   // { name: 'setup', testDir: './', testMatch: [/auth\/.*authsetup\.js$/] },
+    // { name: 'chromium-auth', testDir: './tests/'},
+     // { name: 'firefoxsetup', testDir: './', testMatch: [/auth\/.*firefoxsetup\.js$/] },
 
-    // {
-    //   name: 'firefox',
-    //   use: { ...devices['Desktop Firefox'] },
-    // },
+    {
+      name: 'chromium-auth',
+      grep: /@nonauth/,
+      grepInvert: /@auth/,
+      use: {
+        ...devices['Desktop Chrome'],
+      },
+    },
 
+//  { name: 'setup', testDir: './', testMatch: [/auth\/.*authsetup\.js$/] },
+    {
+      name: 'chromium',
+      grep: /@auth/,
+      grepInvert: /@nonauth/,
+      
+      use: {
+        ...devices['Desktop Chrome'],
+//        browserName: 'chromium',
+//     viewport: null, // disables Playwright default viewport
+//     launchOptions: {
+//       args: ['--start-maximized'],
+        //  storageState: 'tests/.auth/signin.json' ,
+
+        storageState: 'playwright/.auth/login.json'
+      },
+  //  dependencies: ['setup'],
+    },
     // {
-    //   name: 'webkit',
+    //   name: 'webkit-nonauth',
+    //   grep: /@nonauth/,
+    //   grepInvert: /@auth/,
     //   use: { ...devices['Desktop Safari'] },
+//>>>>>>> Supriya
     // },
 
+    // {
+    //   name: 'webkit-auth',
+    //   grep: /@nonauth/,
+    //   grepInvert: /@auth/,
+    //   use: { ...devices['Desktop Safari'],
+    //      storageState: 'playwright/.auth/loginfirefox.json',
+    //    },
+    // },
+
+     
+    // {
+    //   name: 'firefox-nonauth',
+    //     grep: /@nonauth/,
+    //   grepInvert: /@auth/,
+    //     timeout: 90 * 1000, 
+    //   use: { ...devices['Desktop Firefox'] ,
+    //         },
+
+    // },
+
+    // {
+    //   name: 'firefoxsetup1',
+    //     grep: /@auth/,
+    //   grepInvert: /@nonauth/,
+    //     timeout: 60 * 1000, // ⬅️ 60 seconds (you can customize)
+    //   use: { ...devices['Desktop Firefox'] ,
+    //       storageState: 'playwright/.auth/loginfirefox.json',
+    //   },
+    //         dependencies: ['firefoxsetup'],
+
+    // },
+
+    
     /* Test against mobile viewports. */
     // {
     //   name: 'Mobile Chrome',
