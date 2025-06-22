@@ -33,11 +33,15 @@ export class SignInPage {
         await this.signINbtn1.click();
     }
 
-    async validUNandPwd(UN,Pwd) {
-        await this.userName.fill(UN);
-        await this.passWord.fill(Pwd);
+    // async validUNandPwd(UN,Pwd) {
+    //     await this.userName.fill(UN);
+    //     await this.passWord.fill(Pwd);
+    // }
+    
+    async validUNandPwd() {
+         await this.userName.fill(process.env.EMAIL);
+          await this.passWord.fill(process.env.PASSWORD);
     }
-
     async mananAppURL(appPage) {
         // this.page.once('dialog', async dialog => {
         //     await dialog.accept(); // Clicks OK

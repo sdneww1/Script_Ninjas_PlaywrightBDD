@@ -38,7 +38,7 @@ Then('User should navingate to Sign in pop up window.', async ({ signinPage }) =
 When('When User enters valid Email Address and Password', async ({ signinPage }) => {
   // Step: When When User enters valid Email Address and Password
   // From: tests\features\SignIn.feature:9:9
-  await signinPage.validUNandPwd('testuser1', 'testuser1');
+  await signinPage.validUNandPwd();
   
 });
 // When('When User enters valid username {string} and valid password {string}', async ({ signinPage }, UN, Pwd) => {

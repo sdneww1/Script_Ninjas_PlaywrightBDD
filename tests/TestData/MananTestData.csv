@@ -2,12 +2,12 @@ Patient Age,Gender at Birth,Chief Complaint,Detailed Symptoms,Vital Signs& Lab V
 30,Female,BP,"Chest pain,Weak or absent pulses",upload,Diagnosed with asthma at age 10, Lisinopril,,valid
 abc,Female,BP,"Chest pain,Weak or absent pulses",upload,Diagnosed with asthma at age 10, Lisinopril,,invalid Age
 ,Male,BP,"Chest pain,Weak or absent pulses",upload,Diagnosed with asthma at age 10, Lisinopril,,Blank age
+150,Male,BP,"Chest pain,Weak or absent pulses",,Diagnosed with asthma at age 11, Lisinopril,,
 42,,BP,"Chest pain,Weak or absent pulses",upload,Diagnosed with asthma at age 10, Lisinopril,,Blank gender
-45,Female,BP,"Chest pain,Weak or absent pulses",upload,Diagnosed with asthma at age 11, Lisinopril,,Female
 29,Male,,"Chest pain,Weak or absent pulses",upload,Diagnosed with asthma at age 12, Lisinopril,,Blank CC
-40,Male,xyz,"Chest pain,Weak or absent pulses",upload,surgeries, Lisinopril,,Invalid CC
+40,Male,1@#!,"Chest pain,Weak or absent pulses",upload,surgeries, Lisinopril,,Invalid CC
 35,Female,Thyroid,,upload,surgeries,Unithroid,,Blank DS
-60,Female,Thyroid,ABC,upload,surgeries,Unithroid,,invalid DS
+60,Female,Thyroid,!@#$%,upload,surgeries,Unithroid,,invalid DS
 55,Male,BP,Muscle Pain,upload,,,,"empty MH , CM"
 25,Male,BP,Muscle Pain,BP-110/70 mmHg               HR- 75 beats per minute (bpm)                                        RR-16 breaths per minute Temp -98.6°F (37°C)            SpO2 (Oxygen Saturation)-98%,surgeries,Unithroid,,Manual data passed
 33,Male,BP,Muscle Pain,BP-110/70 mmHg               HR- 75 beats per minute (bpm)                                        RR-16 breaths per minute Temp -98.6°F (37°C)            SpO2 (Oxygen Saturation)-98%,,,,
