@@ -5,6 +5,9 @@ const { Given, When, Then } = createBdd(test);
 
 
 Given('The user enter correct Manan portal URL', async ({ homePage }) => {
+// <<<<<<< Shweta
+//   await homePage.NavigatetoHomeUrl('https://manan.numpyninja.com');
+//=======
     await homePage.openBaseURL();
     
       //await this.page.getByText('Welcome to MANAN').waitFor();
@@ -33,6 +36,7 @@ Then('User should navigate to Sign in pop up window.', async ({ homePage }) => {
 
 When('User click on Try Now Link', async ({ homePage }) => {
   await homePage.trynowlink();
+//>>>>>>> Supriya
 });
 
 When('User click on Pricing Link', async ({ homePage }) => {

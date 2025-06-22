@@ -54,25 +54,42 @@ export class SignInPage {
         await expect(popup).toContainText('Authentication Successful');
     }
 
-    async authSuccessfulPopUpMsg()
-    {
-        const popupMsg = this.page.locator('div.grid.gap-1');
-        await expect(popupMsg).toContainText('Welcome to MANAN Medical Assistant.');
-    }
+// <<<<<<< Shweta
+//     // async validUNandPwd(UN,Pwd) {
+//     //     await this.userName.fill(UN);
+//     //     await this.passWord.fill(Pwd);
+//     // }
+    
+//     async validUNandPwd() {
+//          await this.userName.fill(process.env.EMAIL);
+//           await this.passWord.fill(process.env.PASSWORD);
+//     }
+//     async mananAppURL(appPage) {
+//         // this.page.once('dialog', async dialog => {
+//         //     await dialog.accept(); // Clicks OK
+//         // });
+//         await expect(this.page).toHaveURL(appPage);
+// =======
+//     async authSuccessfulPopUpMsg()
+//     {
+//         const popupMsg = this.page.locator('div.grid.gap-1');
+//         await expect(popupMsg).toContainText('Welcome to MANAN Medical Assistant.');
+//     }
 
-    async loginFailedPopUp(expectedMessage)
-    {
-        // const popupLoginFailed = this.page.locator('div.grid gap-1');
-        // await expect(popupLoginFailed).toContainText(loginfailederror);
+//     async loginFailedPopUp(expectedMessage)
+//     {
+//         // const popupLoginFailed = this.page.locator('div.grid gap-1');
+//         // await expect(popupLoginFailed).toContainText(loginfailederror);
 
       
-        const errorTitle = this.page.locator('div.text-sm.font-semibold');
-       const actualMessage = await errorTitle.textContent();
+//         const errorTitle = this.page.locator('div.text-sm.font-semibold');
+//        const actualMessage = await errorTitle.textContent();
 
-//await page.getByText('Please fill in all fields').textContent();
-  // Trim whitespace and compare
-  await expect(actualMessage?.trim()).toBe(expectedMessage);
+// //await page.getByText('Please fill in all fields').textContent();
+//   // Trim whitespace and compare
+//   await expect(actualMessage?.trim()).toBe(expectedMessage);
 
+// >>>>>>> Supriya
     }
 
     async loginFailedPopUpMsg()

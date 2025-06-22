@@ -54,6 +54,14 @@ Then('User should be redirected to Manan Form page with Welcome to MANAN Medical
 Then('User should get pop up error message {string}', async ({ signinPage }, expectedMessage) => {
   await signinPage.loginFailedPopUp(expectedMessage);
 
+//<<<<<<< Shweta
+When('When User enters valid Email Address and Password', async ({ signinPage }) => {
+  // Step: When When User enters valid Email Address and Password
+  // From: tests\features\SignIn.feature:9:9
+  await signinPage.validUNandPwd();
+  
+//=======
+//>>>>>>> Supriya
 });
 When('The user is on the Sign In form with signup button enable', async ({ signinPage }) => {
   //await signinPage.

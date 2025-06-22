@@ -19,6 +19,12 @@ export class HomePage {
     this.contactUSLink = page.getByRole('link', { name: 'Contact Us' });
     
 
+// <<<<<<< Shweta
+//     async NavigatetoHomeUrl() {
+//         await this.page.goto('https://manan.numpyninja.com');
+//     }
+// =======
+// >>>>>>> Supriya
 
   }
 

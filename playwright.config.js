@@ -1,6 +1,6 @@
 // @ts-check
 import { defineConfig, devices } from '@playwright/test';
-import { defineBddConfig } from 'playwright-bdd'
+import { defineBddConfig } from 'playwright-bdd';
 import dotenv from 'dotenv';
 
 dotenv.config({
@@ -80,6 +80,14 @@ export default defineConfig({
 
   /* Configure projects for major browsers */
   projects: [
+
+
+
+
+    // {
+    //   name: 'chromium',
+    //   use: { ...devices['Desktop Chrome'] },
+=======
    // { name: 'setup', testDir: './', testMatch: [/auth\/.*authsetup\.js$/] },
     // { name: 'chromium-auth', testDir: './tests/'},
      // { name: 'firefoxsetup', testDir: './', testMatch: [/auth\/.*firefoxsetup\.js$/] },
@@ -101,6 +109,10 @@ export default defineConfig({
       
       use: {
         ...devices['Desktop Chrome'],
+//        browserName: 'chromium',
+//     viewport: null, // disables Playwright default viewport
+//     launchOptions: {
+//       args: ['--start-maximized'],
         //  storageState: 'tests/.auth/signin.json' ,
 
         storageState: 'playwright/.auth/login.json'
@@ -112,6 +124,7 @@ export default defineConfig({
     //   grep: /@nonauth/,
     //   grepInvert: /@auth/,
     //   use: { ...devices['Desktop Safari'] },
+//>>>>>>> Supriya
     // },
 
     // {
