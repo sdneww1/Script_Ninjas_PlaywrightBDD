@@ -1,9 +1,9 @@
-import { test as firefoxsetup, expect } from '@playwright/test';
+import { test as setupfirefox, expect } from '@playwright/test';
 
 const authFile = 'playwright/.auth/loginfirefox.json';
 const loginUrl = process.env.BaseURL;
 
-firefoxsetup('firefoxauthenticate', async ({ page }) => {
+setupfirefox('firefoxauthenticate', async ({ page }) => {
 
     await page.goto(loginUrl);
     await page.getByRole('button', { name: 'Sign In' }).nth(0).click();
