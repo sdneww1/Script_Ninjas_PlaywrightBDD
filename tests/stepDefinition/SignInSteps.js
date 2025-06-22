@@ -34,7 +34,7 @@ Then('User should be redirected to Manan Form page', async ({ signinPage }) => {
 
 // });
 
-When('User enters valid {string} and {string}', async ({ signinPage }, Username, Password) => {
+When('User enters invalid {string} and {string}', async ({ signinPage }, Username, Password) => {
   await signinPage.InvalidCredentials(Username,Password);
 });
 
@@ -55,3 +55,39 @@ Then('User should get pop up error message {string}', async ({ signinPage }, exp
   await signinPage.loginFailedPopUp(expectedMessage);
 
 });
+When('The user is on the Sign In form with signup button enable', async ({ signinPage }) => {
+  //await signinPage.
+  await signinPage.signupisEnable();
+});
+// When('The user is on the Sign In form', async ({ signinPage }) => {
+//   await signinPage.loginisenable();
+// });
+
+
+When('The user clicks on the Sign Up button', async ({ signinPage }) => {
+    await signinPage.signUpClick();
+});
+
+Then('The Sign Up form should be displayed', async ({ signinPage }) => {
+ await signinPage.signinEnable();
+
+});
+
+When('The user enters valid {string}, {string}, {string}, and {string}', async ({ signinPage }, signUpUN,signUpEmail,signUpPwd,signUpConfirmPwd) => {
+ 
+  await signinPage.signUpformDetails(signUpUN,signUpEmail,signUpPwd,signUpConfirmPwd)
+
+});
+When('The user enters invalid {string}, {string}, {string}, and {string}', async ({ signinPage }, signUpUN,signUpEmail,signUpPwd,signUpConfirmPwd) => {
+ 
+  await signinPage.signUpformDetails(signUpUN,signUpEmail,signUpPwd,signUpConfirmPwd)
+
+});
+
+When('The user clicks on Create Account', async ({ signinPage }) => {
+  await signinPage.signUpCreataccountClick();
+});
+
+
+
+

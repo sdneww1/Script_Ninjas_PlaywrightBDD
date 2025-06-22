@@ -70,7 +70,7 @@ Feature: Manan Form Page Access via Home Page with Authentication
         Given The user enter correct Manan portal URL
         When User click on Sign in button
         And User navigates to Sign in pop up window.
-        And User enters valid "<Username>" and "<Password>"
+        And User enters invalid "<Username>" and "<Password>"
         And the user clicks the Sign-In button on the Sign-In popup
         Then User should get error message "<Error message>"
 
@@ -86,7 +86,7 @@ Feature: Manan Form Page Access via Home Page with Authentication
         Given The user enter correct Manan portal URL
         When User click on Sign in button
         And User navigates to Sign in pop up window.
-        And User enters valid "<Username>" and "<Password>"
+        And User enters invalid "<Username>" and "<Password>"
         And the user clicks the Sign-In button on the Sign-In popup
         Then User should get pop up error message "<Error message>"
 
@@ -96,14 +96,55 @@ Feature: Manan Form Page Access via Home Page with Authentication
             | testuser1         | madhuri@gmail.com | Login Failed  |
             | madhuri@gmail.com | madhuri@gmail.com | Login Failed  |
 
+    @nonauth
+    Scenario: Verify navigation to Sign-Up form via 'Sign Up' button on Welcome popup window
+        Given The user enter correct Manan portal URL
+        When User click on Sign in button
+        And User navigates to Sign in pop up window.
+        And The user is on the Sign In form with signup button enable
+        And The user clicks on the Sign Up button
+        Then The Sign Up form should be displayed
 
-    # @nonauth
-    # Scenario Outline: Verify navigation to Sign-Up form via 'Sign Up' button on Welcome popup window
-    #     Given The user enter correct Manan portal URL
-    #     When User click on Sign in button
-    #     And User navigates to Sign in pop up window.
+
+    @skip
+    Scenario Outline: Verify user can register a new account using the 'Sign Up' page on the Manan Form Page.(valid data)"
+        Given The user enter correct Manan portal URL
+        When User click on Sign in button
+        And User navigates to Sign in pop up window.
+        And The user clicks on the Sign Up button
+        Then The Sign Up form should be displayed
+        When The user enters valid "<Username>", "<Email Address>", "<Password>", and "<Confirm Password>"
+        And The user clicks on Create Account
+        Then User should be redirected to Manan Form page
+
+        Examples:
+            | Username    | Email Address    | Password   | Confirm Password |
+            | testuser123 | test@example.com | Password1! | Password1!       |
 
 
+    @nonauth
+    Scenario Outline: Validate error messages on 'Sign Up' page for form submission"
+        Given The user enter correct Manan portal URL
+        When User click on Sign in button
+        And User navigates to Sign in pop up window.
+        And The user clicks on the Sign Up button
+        Then The Sign Up form should be displayed
+        When The user enters invalid "<Username>", "<Email Address>", "<Password>", and "<Confirm Password>"
+        And The user clicks on Create Account
+        Then User should get error message "<Error message>"
+
+        Examples:
+            | Username    | Email Address    | Password   | Confirm Password | Error message             |
+            |             |                  |            |                  | Please fill in all fields                         |
+            |             | test@example.com | Password1! | Password1!       | Please fill in all fields |
+            | testuser123 |                  | Password1! | Password1!       | Please fill in all fields |
+            | testuser123 | test@example.com |            | Password1!       | Please fill in all fields |
+            | testuser123 | test@example.com | Password1! |                  | Please fill in all fields |
+            |             | test@example.com | Password1! |                  | Please fill in all fields |
+            |             |                  | Password1! |   Password1!     | Please fill in all fields |
+            | testuser123 | test@example.com |            |                  | Please fill in all fields |
+            |             | test@example.com |            |   Password1!     | Please fill in all fields |
+            |             | test@example.com |            |                  | Please fill in all fields |
 #---------------------------------
 
 # @noauth

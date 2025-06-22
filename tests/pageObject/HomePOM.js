@@ -17,6 +17,7 @@ export class HomePage {
     this.aboutUsLink = page.getByRole('link', { name: 'About Us' });
     this.blogLink = page.getByRole('link', { name: 'Blog' });
     this.contactUSLink = page.getByRole('link', { name: 'Contact Us' });
+    
 
 
   }
@@ -38,13 +39,7 @@ export class HomePage {
     await this.signINbtnHome.click();
   }
 
-  async signInPopup() {
-    await this.page.waitForSelector('div[role="dialog"]');
-    // Check for welcome message
-    const welcomeHeading = this.signInPopupmsg;
-    await expect(welcomeHeading).toBeVisible();
-  }
-
+  
   async trynowlink() {
     await this.tryNowLink.click();
   }
@@ -124,11 +119,21 @@ export class HomePage {
     await this.page.goto('/subscription');
   }
 
+async signInPopup() {
+    //await this.page.waitForSelector('div[role="dialog"]');
+    await this.page.waitForSelector('div[role="dialog"]', { timeout: 15000 });
+
+    // Check for welcome message
+    const welcomeHeading = this.signInPopupmsg;
+    await expect(welcomeHeading).toBeVisible();
+  }
 
   async SignInbtnPopupPage() {
 
     await this.signINbtnpopUp.click({ noWaitAfter: true });
   }
+
+  
 
 }
 

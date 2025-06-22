@@ -14,7 +14,7 @@ const testDir = defineBddConfig({
   //  require:['tests/stepDefinition/***.js'],
   features: 'tests/features/***.feature',
   // features: ['tests/features/HomePage.feature', 'tests/features/DashboardPage.feature'],
-  //features: ['tests/features/HomePage.feature','tests/features/HomePageSignIN.feature'],
+  //features: ['tests/features/HomePageSignIN.feature'],
   steps: ['tests/stepDefinition/***steps.js', 'tests/fixtures/Fixtures.js'
     // "tests/hooks/Hooks.js" 
   ],
@@ -107,6 +107,22 @@ export default defineConfig({
       },
   //  dependencies: ['setup'],
     },
+    // {
+    //   name: 'webkit-nonauth',
+    //   grep: /@nonauth/,
+    //   grepInvert: /@auth/,
+    //   use: { ...devices['Desktop Safari'] },
+    // },
+
+    // {
+    //   name: 'webkit-auth',
+    //   grep: /@nonauth/,
+    //   grepInvert: /@auth/,
+    //   use: { ...devices['Desktop Safari'],
+    //      storageState: 'playwright/.auth/loginfirefox.json',
+    //    },
+    // },
+
      
     // {
     //   name: 'firefox-nonauth',
@@ -130,13 +146,7 @@ export default defineConfig({
 
     // },
 
-    {
-      name: 'webkit',
-      grep: /@nonauth/,
-      grepInvert: /@auth/,
-      use: { ...devices['Desktop Safari'] },
-    },
-
+    
     /* Test against mobile viewports. */
     // {
     //   name: 'Mobile Chrome',

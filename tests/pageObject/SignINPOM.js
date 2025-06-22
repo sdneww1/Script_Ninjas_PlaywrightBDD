@@ -7,6 +7,15 @@ export class SignInPage {
         this.userName = page.getByPlaceholder('Enter your username');
         this.passWord = page.getByPlaceholder('Enter your password');
         this.errorMsg = page.getByText('Please fill in all fields');
+        this.signinTab = page.getByRole('tab', { name: 'Sign In' });
+        this.signUpTab = page.getByRole('tab', { name: 'Sign Up' });
+        this.usernameLabel = page.locator('label[for="register-username"]');
+        this.usernameInput = page.getByPlaceholder('Choose a username');
+        this.emailInput = page.getByPlaceholder('Enter your email address');
+        this.createpwdInput = page.getByPlaceholder('Create a password');
+        this.confirmpwdInput = page.getByPlaceholder('Confirm your password');
+        this.createAccountbtn = page.getByRole('button', { name: 'Create Account' });
+
     }
     
     async validUNandPwd() {
@@ -26,8 +35,7 @@ export class SignInPage {
     // rMsg.textContent();
     //    console.log(errorText); // Should print: Please fill in all fields
           await expect(this.errorMsg).toHaveText(errorText);
-
-    }
+     }
 
     async mananAppURL(appPage) {
         this.page.once('dialog', async dialog => {
@@ -57,10 +65,11 @@ export class SignInPage {
         // const popupLoginFailed = this.page.locator('div.grid gap-1');
         // await expect(popupLoginFailed).toContainText(loginfailederror);
 
-
+      
         const errorTitle = this.page.locator('div.text-sm.font-semibold');
        const actualMessage = await errorTitle.textContent();
 
+//await page.getByText('Please fill in all fields').textContent();
   // Trim whitespace and compare
   await expect(actualMessage?.trim()).toBe(expectedMessage);
 
@@ -71,5 +80,43 @@ export class SignInPage {
         const popupLoginFailedMsg = this.page.locator('div.grid.gap-1');
         await expect(popupMsg).toContainText('Incorrect password.');
     }
+
+    async signupisEnable()
+  {
+const signInTab = this.page.locator('[id="radix-\\:r27\\:-trigger-login"]');
+//const signUpTab = this.page.getByRole('tab', { name: 'Sign Up' });
+await expect(this.signUpTab).toBeEnabled();
+// await expect(signInTab).toHaveAttribute('aria-selected', 'true');
+// await expect(signUpTab).toHaveAttribute('aria-selected', 'false');
+
+
+  }
+  async signUpClick()
+  {
+await this.signUpTab.click();
+  }
+//   async usernameVisibleSignup(){
+    
+// await expect(usernameLabel).toBeVisible();
+
+//   }
+async signinEnable()
+{
+  await expect(this.signinTab).toBeEnabled();
+}
+
+async signUpformDetails(signUpUN,signUpEmail,signUpPwd,signUpConfirmPwd)
+{
+ await this.usernameInput.fill(signUpUN);
+  await this.emailInput.fill(signUpEmail);
+  await this.createpwdInput.fill(signUpPwd);
+  await this.confirmpwdInput.fill(signUpConfirmPwd);
+  
+  
+}
+async signUpCreataccountClick()
+{
+  await this.createAccountbtn.click();
+}
 }
 //export{ SignInPage };
