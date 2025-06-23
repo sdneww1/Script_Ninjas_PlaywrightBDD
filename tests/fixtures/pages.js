@@ -1,3 +1,3 @@
 export * from  '../pageObject/SignINPOM';
 export * from  '../pageObject/HomePOM';
-export * from '../pageObject/DashboardPOM';
+export * from '../pageObject/DashboardPOM_Dhivya';

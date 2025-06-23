@@ -2,6 +2,14 @@
 import { defineConfig, devices } from '@playwright/test';
 import { defineBddConfig } from 'playwright-bdd'
 import dotenv from 'dotenv';
+// import 'dotenv/config';
+
+dotenv.config({
+  path: `./env/.env.${process.env.ENV}`
+})
+
+// console.log("Loaded ENV:", process.env.ENV);
+// console.log("BaseURL:", process.env.BaseURL);
 
 const testDir = defineBddConfig({
    importTestFrom:'tests/fixtures/Fixtures.js',
@@ -18,10 +26,6 @@ const testDir = defineBddConfig({
 //   ]
 // });
 
-
-dotenv.config({
-  path: `./env/.env.${process.env.ENV}`
-})
 
 /**
  * Read environment variables from file.
@@ -61,7 +65,7 @@ export default defineConfig({
   /* Configure projects for major browsers */
   projects: [
     { name: 'setup', testDir: './', testMatch: [/auth\/.*authsetup\.js$/] },
-     { name: 'firefoxsetup', testDir: './', testMatch: [/auth\/.*authsetupFirefox\.js$/] },
+    //  { name: 'firefoxsetup', testDir: './', testMatch: [/auth\/.*authsetupFirefox\.js$/] },
 
      
     {
@@ -75,14 +79,14 @@ export default defineConfig({
        dependencies: ['setup'],
     },
 
-    {
-      name: 'firefox',
-      use: { ...devices['Desktop Firefox'] ,
-          storageState: 'playwright/.auth/loginfirefox.json',
-      },
-            dependencies: ['firefoxsetup'],
+    // {
+    //   name: 'firefox',
+    //   use: { ...devices['Desktop Firefox'] ,
+    //       storageState: 'playwright/.auth/loginfirefox.json',
+    //   },
+    //         dependencies: ['firefoxsetup'],
 
-    },
+    // },
 
     // {
     //   name: 'webkit',
