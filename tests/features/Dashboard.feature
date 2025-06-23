@@ -243,3 +243,16 @@ Scenario: Verify that the user is able to save the changes after clicking "Save 
     Given The user is in the Setting page
     When The user should be able to save the changes after clicking Save Changes in the Setting page
     Then The user is able to view the success message Success - Your notification preferences have been updated
+
+
+# SUPRIYA DAshboard Feature
+
+#     @auth
+# Feature: Verify Dashboard Page
+
+#   Background:
+#    Given The user is authenticated and user navigated to the Manan Form page
+#    @auth
+#   Scenario: Verify that user is able to open the Dashboard Page
+#     When User clicks on Dashboard button
+#     Then User should navigate to Dashboard Page "https://manan.numpyninja.com/dashboard"

@@ -295,3 +295,28 @@ When('The user should be able to save the changes after clicking Save Changes in
 Then('The user is able to view the success message Success - Your notification preferences have been updated', async ({ dashboardPage }) => {
   await dashboardPage.saveChangesText();
 });
+
+
+// SUPRIYA Dashboard_Steps
+// import { createBdd } from 'playwright-bdd';
+// import { test } from '../fixtures/Fixtures';
+// import { expect } from '@playwright/test';
+
+
+// const { Given, When, Then } = createBdd(test);
+
+
+// Given('The user is authenticated and user navigated to the Manan Form page', async ({ homePage }) => {
+//   await homePage.appnavigteURL(); 
+// });
+
+
+// When('User clicks on Dashboard button', async ({ dashboardPage }) => {
+//   await dashboardPage.clickDashboardButton();
+// });
+
+// Then('User should navigate to Dashboard Page {string}', async ({ page }, partialUrl) => {
+//   await expect(page).toHaveURL(new RegExp(partialUrl));
+//   await expect(page.getByText('Welcome to Your Medical Dashboard')).toBeVisible();
+
+// });
