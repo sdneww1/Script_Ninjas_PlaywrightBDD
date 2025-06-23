@@ -17,15 +17,6 @@ export class HomePage {
     this.aboutUsLink = page.getByRole('link', { name: 'About Us' });
     this.blogLink = page.getByRole('link', { name: 'Blog' });
     this.contactUSLink = page.getByRole('link', { name: 'Contact Us' });
-    
-
-// <<<<<<< Shweta
-//     async NavigatetoHomeUrl() {
-//         await this.page.goto('https://manan.numpyninja.com');
-//     }
-// =======
-// >>>>>>> Supriya
-
   }
 
   async openBaseURL() {
@@ -77,9 +68,6 @@ export class HomePage {
   async medicalTriageAssessmentbtn() {
     await this.medicalTriagebtn.hover(); // hover first
     await this.medicalTriagebtn.click({ noWaitAfter: true });
-    // then click
-
-    //await this.medicalTriagebtn.click();
   }
 
   // async aboutUsLinkClick()
@@ -138,8 +126,5 @@ async signInPopup() {
 
     await this.signINbtnpopUp.click({ noWaitAfter: true });
   }
-
-  
-
 }
 

@@ -5,13 +5,7 @@ const { Given, When, Then } = createBdd(test);
 
 
 Given('The user enter correct Manan portal URL', async ({ homePage }) => {
-// <<<<<<< Shweta
-//   await homePage.NavigatetoHomeUrl('https://manan.numpyninja.com');
-//=======
     await homePage.openBaseURL();
-    
-      //await this.page.getByText('Welcome to MANAN').waitFor();
-
 });
 
 When('The user should be able to land on Manan portal with Title {string}', async ({ homePage }, homeTitle) => {
@@ -64,8 +58,6 @@ When('User click on View Pricing Plans button', async ({ homePage }) => {
   await homePage.viewPricingPlanClick();
 });
 
-
-
 When('The user click on About us link which is present bottom of the page below the company heading.', async ({ homePage }) => {       
  await homePage.aboutUsLinkClick();
 });
@@ -89,7 +81,6 @@ When('The user click on Contact Us link which is present bottom of the page belo
 Then('The user should navigate to NumpyNinja Contact Us Page.', async ({ homePage }) => {
   await homePage.contactUSPagenavigation();
 });
-
 
 
 
