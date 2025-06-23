@@ -122,7 +122,7 @@ Feature: Manan Form Page Access via Home Page with Authentication
             | testuser123 | test@example.com | Password1! | Password1!       |
 
 
-    @nonauth
+    @skip
     Scenario Outline: Validate error messages on 'Sign Up' page for form submission"
         Given The user enter correct Manan portal URL
         When User click on Sign in button
@@ -135,16 +135,56 @@ Feature: Manan Form Page Access via Home Page with Authentication
 
         Examples:
             | Username    | Email Address    | Password   | Confirm Password | Error message             |
-            |             |                  |            |                  | Please fill in all fields                         |
+            |             |                  |            |                  | Please fill in all fields |
             |             | test@example.com | Password1! | Password1!       | Please fill in all fields |
             | testuser123 |                  | Password1! | Password1!       | Please fill in all fields |
             | testuser123 | test@example.com |            | Password1!       | Please fill in all fields |
             | testuser123 | test@example.com | Password1! |                  | Please fill in all fields |
             |             | test@example.com | Password1! |                  | Please fill in all fields |
-            |             |                  | Password1! |   Password1!     | Please fill in all fields |
+            |             |                  | Password1! | Password1!       | Please fill in all fields |
             | testuser123 | test@example.com |            |                  | Please fill in all fields |
-            |             | test@example.com |            |   Password1!     | Please fill in all fields |
+            |             | test@example.com |            | Password1!       | Please fill in all fields |
             |             | test@example.com |            |                  | Please fill in all fields |
+
+    @skip
+    Scenario: Verify user can register a new account using the 'Sign Up' page on the Manan Form Page.(valid Json data)"
+        Given The user enter correct Manan portal URL
+        When User click on Sign in button
+        And User navigates to Sign in pop up window.
+        And The user clicks on the Sign Up button
+        Then The Sign Up form should be displayed
+        When The user enters valid json "Username", "Email Address", "Password", and "Confirm Password"
+        And The user clicks on Create Account
+        Then User should be redirected to Manan Form page
+
+   @nonauth
+    Scenario Outline: Verify user gets validation error for invalid sign-up data from JSON
+        Given The user enter correct Manan portal URL
+        When User click on Sign in button
+        And User navigates to Sign in pop up window.
+        And The user clicks on the Sign Up button
+        Then The Sign Up form should be displayed
+        When The user enters invalid json data at index <index>
+        And The user clicks on Create Account
+        Then User should get error message "Please fill in all fields"
+
+        Examples:
+            | index |
+            | 0     |
+            | 1     |
+            | 2     |
+            | 3     |
+            | 4     |
+            | 5     |
+            | 6     |
+            | 7     |
+            | 8     |
+            | 9     |
+            | 10    |
+            | 11    |
+
+
+
 #---------------------------------
 
 # @noauth
@@ -158,3 +198,14 @@ Feature: Manan Form Page Access via Home Page with Authentication
 # Given The user enter correct Manan portal URL
 # When User click on View Pricing Plans button
 # Then User should navigate to Manan Form Page
+
+    # @nonauth
+    # Scenario: Verify user can register a new account using the 'Sign Up' page on the Manan Form Page.(invalid Json data)"
+    #     Given The user enter correct Manan portal URL
+    #     When User click on Sign in button
+    #     And User navigates to Sign in pop up window.
+    #     And The user clicks on the Sign Up button
+    #     Then The Sign Up form should be displayed
+    #     When The user enters invalid json "Username", "Email Address", "Password", and "Confirm Password"
+    #     And The user clicks on Create Account
+    #     Then User should get error message "Please fill in all fields"

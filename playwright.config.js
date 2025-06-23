@@ -9,12 +9,10 @@ dotenv.config({
 
 
 const testDir = defineBddConfig({
-  //  importTestFrom:'tests/fixtures/Fixtures.js',
-  //  paths: ['tests/features/***.feature'],
-  //  require:['tests/stepDefinition/***.js'],
-  features: 'tests/features/***.feature',
+
+  //features: 'tests/features/***.feature',
   // features: ['tests/features/HomePage.feature', 'tests/features/DashboardPage.feature'],
-  //features: ['tests/features/HomePageSignIN.feature'],
+  features: ['tests/features/HomePage.feature', 'tests/features/HomePageSignIN.feature', 'tests/features/DashboardPage.feature'],
   steps: ['tests/stepDefinition/***steps.js', 'tests/fixtures/Fixtures.js'
     // "tests/hooks/Hooks.js" 
   ],
@@ -61,7 +59,7 @@ export default defineConfig({
   /* Opt out of parallel tests on CI. */
   workers: process.env.CI ? 1 : undefined,
   /* Reporter to use. See https://playwright.dev/docs/test-reporters */
-  reporter:[ ['html'],['allure-playwright']],
+  reporter: [['html'], ['allure-playwright']],
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
   use: {
     /* Base URL to use in actions like `await page.goto('/')`. */
@@ -87,10 +85,9 @@ export default defineConfig({
     // {
     //   name: 'chromium',
     //   use: { ...devices['Desktop Chrome'] },
-=======
-   // { name: 'setup', testDir: './', testMatch: [/auth\/.*authsetup\.js$/] },
+    // { name: 'setup', testDir: './', testMatch: [/auth\/.*authsetup\.js$/] },
     // { name: 'chromium-auth', testDir: './tests/'},
-     // { name: 'firefoxsetup', testDir: './', testMatch: [/auth\/.*firefoxsetup\.js$/] },
+    // { name: 'firefoxsetup', testDir: './', testMatch: [/auth\/.*firefoxsetup\.js$/] },
 
     {
       name: 'chromium-auth',
@@ -101,30 +98,28 @@ export default defineConfig({
       },
     },
 
-//  { name: 'setup', testDir: './', testMatch: [/auth\/.*authsetup\.js$/] },
+    { name: 'setup', testDir: './', testMatch: [/auth\/.*authsetup\.js$/] },
     {
       name: 'chromium',
       grep: /@auth/,
       grepInvert: /@nonauth/,
-      
+
       use: {
         ...devices['Desktop Chrome'],
-//        browserName: 'chromium',
-//     viewport: null, // disables Playwright default viewport
-//     launchOptions: {
-//       args: ['--start-maximized'],
-        //  storageState: 'tests/.auth/signin.json' ,
-
+        // //        browserName: 'chromium',
+        // //     viewport: null, // disables Playwright default viewport
+        // //     launchOptions: {
+        // //       args: ['--start-maximized'],
         storageState: 'playwright/.auth/login.json'
       },
-  //  dependencies: ['setup'],
+      dependencies: ['setup'],
     },
-    // {
+    //     // {
     //   name: 'webkit-nonauth',
     //   grep: /@nonauth/,
     //   grepInvert: /@auth/,
     //   use: { ...devices['Desktop Safari'] },
-//>>>>>>> Supriya
+    //>>>>>>> Supriya
     // },
 
     // {
@@ -136,7 +131,7 @@ export default defineConfig({
     //    },
     // },
 
-     
+
     // {
     //   name: 'firefox-nonauth',
     //     grep: /@nonauth/,
@@ -159,7 +154,7 @@ export default defineConfig({
 
     // },
 
-    
+
     /* Test against mobile viewports. */
     // {
     //   name: 'Mobile Chrome',

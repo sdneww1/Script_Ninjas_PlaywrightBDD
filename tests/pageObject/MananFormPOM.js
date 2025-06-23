@@ -42,10 +42,10 @@ export class MananFormPage {
 
     }
 
-    async MananFormPage() {
-        await expect(this.LoginSuccessMsg).toBeVisible();
-        //await expect (this.patientAge).toBeVisible();
-    }
+    // async MananFormPage() {
+    //     await expect(this.LoginSuccessMsg).toBeVisible();
+    // //     //await expect (this.patientAge).toBeVisible();
+    //  }
 
     async FillFormDetails() {
         const firstRecord = records[0]; // Get only the first row

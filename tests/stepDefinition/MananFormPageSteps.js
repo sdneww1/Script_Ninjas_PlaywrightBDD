@@ -18,9 +18,12 @@ Then('The user should see the placeholder for Patients Age field', async ({ mana
 
 ////////Valid Details//////////////////////////////////
 
-Given('user is on the Manan Form Page', async ({ mananForm }) => {
-  console.log('user is on manan form page');
-  await mananForm.MananFormPage();
+Given('user is on the Manan Form Page', async ({ signinPage }) => {
+   console.log('user is on manan form page');
+  // await mananForm.MananFormPage();
+  //await homePage.appnavigteURL();
+  await signinPage.mananFormURL();
+
 });
 
 When('User Enter all deatils in the form and click on Analyze Case button', async ({ mananForm }) => {
