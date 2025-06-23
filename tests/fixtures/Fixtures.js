@@ -6,7 +6,6 @@ const createTestFunction = (PageClass) => async ({ page }, use) => {
   await use(new PageClass(page));
 }
 
-
 export const test = base.extend({
   signinPage: createTestFunction(SignInPage),
   homePage: createTestFunction(HomePage),
