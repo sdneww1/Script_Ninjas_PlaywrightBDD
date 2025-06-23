@@ -13,6 +13,32 @@ Feature: Manan app Form Page
       When  The user should be able to view Enter patient age placeholder for Patients Age field
       Then   The user should see the placeholder for Patients Age field
 
+   Scenario: Verify that user is able to view "Main reason for visit" placeholder for "Chief Complaint" field
+      Given user is on the Manan Form Page
+      When  The user should be able to view Main reason for visit placeholder for Chief Complaint field
+      Then  The user should see the placeholder for Chief Complaint field
+
+   Scenario: Verify that user is able to view "Describe all symptoms in detail, including onset and severity" placeholder for "Detailed Symptoms" field
+      Given user is on the Manan Form Page
+      When The user should be able to view Describe all symptoms in detail, including onset and severity placeholder for Detailed Symptoms field
+      Then The user should see the placeholder for Detailed Symptoms field
+
+    Scenario:Verify that user is able to view "Enter vital signs (BP, HR, RR, Temp, SPO2) and any available lab results" placeholder for "Vital Signs & Lab Values" field
+      Given user is on the Manan Form Page
+      When The user should be able to view Enter vital signs (BP, HR, RR, Temp, SPO2) and any available lab results placeholder for Vital Signs & Lab Values field
+      Then The user should see the placeholder for Vital Signs & Lab Values field
+
+   Scenario: Verify that user is able to view "Relevant past medical history" placeholder for "Medical History" field
+      Given user is on the Manan Form Page
+      When The user should be able to view Relevant past medical history placeholder for Medical History field
+      Then The user should see the placeholder for Medical History field
+
+      Scenario: Verify that user is able to view "List current medications and dosages" placeholder for "Current Medications" field
+      Given user is on the Manan Form Page
+      When The user should be able to view List current medications and dosages placeholder for Current Medications field
+      Then The user should see the placeholder for Current Medications field
+
+
    Scenario: Check the user is able to add a new patient's details Successfully
       Given user is on the Manan Form Page
       When  User Enter all deatils in the form and click on Analyze Case button
@@ -72,3 +98,40 @@ Feature: Manan app Form Page
    Given user is on the Manan Form Page
    When User is uploading jpeg file
    Then The user should be able to see the jpeg uploaded successfully
+
+
+   Scenario: Verify user is getting error while uploading the pdf file with size more than 5MB
+   Given user is on the Manan Form Page
+   When User is uploading the pdf file with size more than 5MB
+   Then The user should be able to see error message
+
+   Scenario:Verify user entering reading manually in vital signs and lab values
+   Given user is on the Manan Form Page
+   When User enter all BP,HR,RR,Temp,SpO2 values in the field 
+   Then The user should able to view the detailed analysis report
+
+   Scenario: Verify error message for entering wrong values in vital signs and lab values
+   Given user is on the Manan Form Page
+   When Verify error message for entering wrong values in vital signs and lab values
+   Then The user should able to view error message 
+
+  Scenario: verify user is able to upload one or multiple reports in vital signs and lab values
+   Given user is on the Manan Form Page
+   When User enter more than one report in vital signs and lab values field
+   Then The user should be able to view multiple reports get added
+
+   Scenario: Verify that user enter incorrect data for medicle history field
+   Given user is on the Manan Form Page
+   When  User enter incorrect values in  medical history field
+   Then The user should be able to see error message in medical history field
+
+   Scenario: Verify that Analyze case button visible in Manan app page 
+   Given user is on the Manan Form Page
+   When User validate if  Analyze Case button should be visible in Manan app Page
+   Then The user should able to see Analyze Case button in manan app Page 
+
+   Scenario: Verify that user is able to share the analysis
+   Given user is on the Manan Form Page
+   When User is clicking on share analysis button
+   Then The user should view pdf generated success message
+ 

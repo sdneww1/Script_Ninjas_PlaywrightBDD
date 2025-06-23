@@ -1,16 +1,60 @@
 import { createBdd } from 'playwright-bdd';
 import { expect } from '@playwright/test';
 import { test } from '../fixtures/Fixtures';
+import { MananFormPage } from '../pageObject/MananFormPOM';
 const { Given, When, Then } = createBdd(test);
 
 //////////Placeholder//////////////////
 When('The user should be able to view Enter patient age placeholder for Patients Age field', async ({ mananForm }) => {
-
+   await console.log('User is able to view Enter patient age placeholder in field');
 });
 
 Then('The user should see the placeholder for Patients Age field', async ({ mananForm }) => {
   await mananForm.ValidateAgePlaceholder();
 });
+
+When('The user should be able to view Describe all symptoms in detail, including onset and severity placeholder for Detailed Symptoms field', async ({mananForm}) => {  
+   
+  await console.log('User is able view the placeholder in field');
+});
+
+Then('The user should see the placeholder for Detailed Symptoms field', async ({mananForm}) => {
+  await mananForm.ValidateDetailedSymptomsPlaceholder();
+});
+
+When('The user should be able to view Enter vital signs \\(BP, HR, RR, Temp, SPO2) and any available lab results placeholder for Vital Signs & Lab Values field', async ({mananForm}) => {
+    await console.log('User is able view the placeholder in field for vital signs');
+});
+
+Then('The user should see the placeholder for Vital Signs & Lab Values field', async ({mananForm}) => {
+  await mananForm.ValidateVitalSignsPlaceholder();
+});
+
+When('The user should be able to view Main reason for visit placeholder for Chief Complaint field', async ({mananForm}) => {
+  await console.log('User is able to view Main reson for visit placeholder in field');
+});
+
+Then('The user should see the placeholder for Chief Complaint field', async ({mananForm}) => {
+ await mananForm.ValidateChifComplaintPlaceholder();
+});
+
+When('The user should be able to view Relevant past medical history placeholder for Medical History field', async ({mananForm}) => {
+   await console.log('User is able to view Relevant past medical history placeholder in field');
+});
+
+Then('The user should see the placeholder for Medical History field', async ({mananForm}) => {
+  await mananForm.ValidateMedicalHistory();
+});
+
+When('The user should be able to view List current medications and dosages placeholder for Current Medications field', async ({mananForm}) => {
+ await console.log('User is able to view List current medications and dosages placeholder in field');
+});
+
+Then('The user should see the placeholder for Current Medications field', async ({mananForm}) => {
+  await mananForm.ValidateCurrentMediactionPlaceholder();
+});
+
+
 ////////////////////////////////////////////////////////
 
 
@@ -126,3 +170,70 @@ When('User is uploading jpeg file', async ({mananForm}) => {
 Then('The user should be able to see the jpeg uploaded successfully', async ({mananForm}) => {
   await mananForm.JpegUploadValidate();
 });
+
+When('User is uploading the pdf file with size less than 5MB', async ({mananForm}) => {
+  await mananForm.UploadReportSizeValidation();
+});
+
+Then('The user should be able to see the file get uploaded successfully', async ({mananForm}) => {
+  await mananForm.UploadReportSizeAssert();
+});
+
+When('User is uploading the pdf file with size more than 5MB', async ({mananForm}) => {
+  await mananForm.UploadReportInvalidValidation();
+});
+
+Then('The user should be able to see error message', async ({mananForm}) => {
+   await mananForm.UploadSuccessInvalidAssert();
+});
+
+When('User enter all BP,HR,RR,Temp,SpO2 values in the field', async ({mananForm}) => {
+  await mananForm.EnterRecordManuallyValidation();
+});
+
+Then('The user should able to view the detailed analysis report', async ({mananForm}) => {
+  await mananForm.ViweReport();
+});
+
+When('Verify error message for entering wrong values in vital signs and lab values', async ({mananForm}) => {
+ await mananForm.EnterInvalidValuesManuallyInLabValues();
+});
+
+Then('The user should able to view error message', async ({mananForm}) => {
+ await mananForm.EnterInvalidValuesInLabValuesAssert();
+});
+
+When('User enter more than one report in vital signs and lab values field', async ({mananForm}) => {
+ await mananForm.EnterMultipleReportValidation();
+});
+
+Then('The user should be able to view multiple reports get added', async ({mananForm}) => {
+   //test.setTimeout(100_000);
+  await mananForm.MultipleReportAssert();
+});
+
+When('User enter incorrect values in  medical history field', async ({mananForm}) => {
+  //await mananForm.EnterInvalidMediacalHostory();
+});
+
+Then('The user should be able to see error message in medical history field', async ({mananForm}) => {
+ //await mananForm.EnterInvalidMediacalHostoryAssert();
+});
+
+
+When('User validate if  Analyze Case button should be visible in Manan app Page', async ({mananForm}) => {
+ await mananForm.Analyzebuttonvisible();
+});
+
+Then('The user should able to see Analyze Case button in manan app Page', async ({mananForm}) => {
+await mananForm.AnalyzebuttonvisibleAssert();
+});
+
+When('User is clicking on share analysis button', async ({mananForm}) => {
+   await mananForm.shareAnalysisValidate();
+});
+
+Then('The user should view pdf generated success message', async ({mananForm}) => {
+  await mananForm.shareAnalysisAssert();
+});
+

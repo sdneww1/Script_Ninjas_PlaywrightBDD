@@ -5,9 +5,11 @@ abc,Female,BP,"Chest pain,Weak or absent pulses",upload,Diagnosed with asthma at
 150,Male,BP,"Chest pain,Weak or absent pulses",,Diagnosed with asthma at age 11, Lisinopril,,
 42,,BP,"Chest pain,Weak or absent pulses",upload,Diagnosed with asthma at age 10, Lisinopril,,Blank gender
 29,Male,,"Chest pain,Weak or absent pulses",upload,Diagnosed with asthma at age 12, Lisinopril,,Blank CC
-40,Male,1@#!,"Chest pain,Weak or absent pulses",upload,surgeries, Lisinopril,,Invalid CC
+40,Male,!@#$%,"Chest pain,Weak or absent pulses",upload,surgeries, Lisinopril,,Invalid CC
 35,Female,Thyroid,,upload,surgeries,Unithroid,,Blank DS
 60,Female,Thyroid,!@#$%,upload,surgeries,Unithroid,,invalid DS
 55,Male,BP,Muscle Pain,upload,,,,"empty MH , CM"
 25,Male,BP,Muscle Pain,BP-110/70 mmHg               HR- 75 beats per minute (bpm)                                        RR-16 breaths per minute Temp -98.6°F (37°C)            SpO2 (Oxygen Saturation)-98%,surgeries,Unithroid,,Manual data passed
-33,Male,BP,Muscle Pain,BP-110/70 mmHg               HR- 75 beats per minute (bpm)                                        RR-16 breaths per minute Temp -98.6°F (37°C)            SpO2 (Oxygen Saturation)-98%,,,,
+25,Male,BP,Muscle Pain,BP-0 mmHg               HR- dsdff beats per minute (bpm)                                        RR-1sdsdbreaths per minute Temp sdsdsd°F        SpO2 (Oxygen Saturation)-dsd,surgeries,Unithroid,,
+33,Male,BP,Muscle Pain,upload,sdfdsgvc23233,Unithroid,,
+36,Male,BP,Muscle Pain,upload,surgeries,xdvcvdfg544,,
