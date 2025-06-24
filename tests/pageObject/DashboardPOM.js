@@ -171,8 +171,7 @@ export class DashboardPage {
     }
 
     async emailPaymentText() {
-        // const emailPaymentCheck = this.page.locator('.ReadOnlyFormField-title');
-        // await expect(emailPaymentCheck).toBeVisible();
+       
         await this.emailPaymentCheck.click({ noWaitAfter: true });
     }
 
@@ -196,7 +195,7 @@ export class DashboardPage {
     }
 
     async cardNumberBoxCheck() {
-        // await expect(this.cardNumberBox).toBeVisible();
+       
         const cardNumberValue = await this.page.locator('#cardNumber').getAttribute('value');
         await expect(cardNumberValue).not.toBe('');
     }
@@ -406,30 +405,3 @@ export class DashboardPage {
         await expect(logoutsuccessText).toHaveText('You have been securely logged out of MANAN Medical Assistant.');
     }
 }
-//export{ SignInPage };
-
-
-//SUPRIYA Dashboard_POM
-
-// import { expect } from '@playwright/test';
-// export class DashboardPage {
-//   constructor(page) {
-//     this.page = page;
-//     this.dashboardButton = page.getByRole('button', {name : 'Dashboard'}); // Adjust selector as needed
-//   }
-
-//   async dashappUrl()
-//   {
-//     await this.page.goto('/app');
-//       // const textapp = page.getByText('(Multi-Algorithm Navigation and Analysis Node)');
-//       // await expect(textapp).toHaveText(/(Multi-Algorithm Navigation and Analysis Node)/);
-//   }
-
-//   async clickDashboardButton() {
-//     await this.dashboardButton.click();
-//   }
-
-//   async verifyDashboardPage(Dashurl) {
-//     await this.page.waitForURL(Dashurl);
-//   }
-// }

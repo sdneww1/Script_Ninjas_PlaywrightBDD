@@ -29,6 +29,7 @@ export class MananFormPage {
         this.SuccessPopupcloseBtn = page.locator('button:has(svg.lucide-x)');
         this.report = page.getByText('### 1. TRIAGE LEVEL **HIGH');
         this.AnalyzePopup = page.getByRole('region', { name: 'Notifications (F8)' }).getByRole('status');
+
         this.AiAnalysis = page.getByRole('heading', { name: 'AI Analysis' });
         this.AnalysisReport = page.locator('.rounded-lg').first();
         this.AgeValidation = page.getByText('Patient age is required');
@@ -68,8 +69,58 @@ export class MananFormPage {
         await expect(this.CurrentMedication).toBeVisible();
  }
 
+    // async FillFormDetails() {
+    //     const firstRecord = records[0]; 
+    //     this.age = firstRecord['Patient Age'];
+    //     this.gender = firstRecord['Gender at Birth'];
+    //     this.chif_complaint = firstRecord['Chief Complaint'];
+    //     this.deatiled_symptoms = firstRecord['Detailed Symptoms'];
+    //     this.medical_history = firstRecord['Medical History'];
+    //     this.current_Medication = firstRecord['Current Medications'];
+    //     await this.patientAge.fill(this.age);
+    //     await this.genderAtBirth.click();
+    //     await this.GenderSelectOption.first().click();
+    //     await this.ChifComplaint.fill(this.chif_complaint);
+    //     await this.DetailedSymptoms.fill(this.deatiled_symptoms);
+    //     // // Upload the report
+    
+    //     // Then set file in hidden input
+    //     await this.fileupload.setInputFiles("tests/TestData/Blood Reports/CBC-sample 1.pdf");
+
+    //     const successMsg = this.page.locator('div.text-sm.font-semibold');
+
+    //     // Wait for the success message to be visible
+    //     await expect(successMsg).toHaveText('Success', { timeout: 120000 });
+
+    //     if (await this.SuccessPopupcloseBtn.isVisible()) {
+    //         await this.SuccessPopupcloseBtn.click();
+    //     }
+
+    //     //medical history field
+    //     await this.MedicaHistory.fill(this.medical_history);
+    //     //current medication field
+    //     await this.CurrentMedication.fill(this.current_Medication);
+
+    //     await this.page.waitForTimeout(5000);
+    //     await this.analyzeCaseBtn.hover();
+    //     await this.analyzeCaseBtn.click();
+
+    //     const analysisHeading = this.page.locator('h2.text-2xl.font-semibold', { hasText: 'AI Analysis' });
+    //     await expect(analysisHeading).toBeVisible({ timeout: 5000000 }); // wait max 15 sec for heading
+
+    //     // Now wait for the success message after analysis is done
+    //     const analysisCompleteMsg = this.page.locator('div.text-sm.font-semibold', { hasText: 'Analysis Complete' });
+    //     await expect(analysisCompleteMsg).toBeVisible({ timeout: 600000 }); // wait max 3 mins for completion
+
+    //     // Hover and log message
+    //     await analysisCompleteMsg.hover();
+    //     const text = await analysisCompleteMsg.textContent();
+    //     console.log("✅ Analysis message text is:", text);
+       
+    // }
+
     async FillFormDetails() {
-        const firstRecord = records[0]; 
+        const firstRecord = records[0];
         this.age = firstRecord['Patient Age'];
         this.gender = firstRecord['Gender at Birth'];
         this.chif_complaint = firstRecord['Chief Complaint'];
@@ -81,32 +132,28 @@ export class MananFormPage {
         await this.GenderSelectOption.first().click();
         await this.ChifComplaint.fill(this.chif_complaint);
         await this.DetailedSymptoms.fill(this.deatiled_symptoms);
-        //pdf upload
         await this.fileupload.setInputFiles("tests/TestData/Blood Reports/CBC-sample 1.pdf");
-        //assertion for successful upload popup
         await this.page.waitForTimeout(3000);
-
         //medical history field
         await this.MedicaHistory.fill(this.medical_history);
         //current medication field
         await this.CurrentMedication.fill(this.current_Medication);
-
         await this.page.waitForTimeout(5000);
         //close popup
         await this.uploadsucesspopupclosebtn.click();
-        //     //Analyze case button
+        //Analyze case button
         await this.analyzeCaseBtn.click();
         await this.page.waitForTimeout(3000);
-
-
-        //   // Wait for Analysis popup
+        // Wait for Analysis popup
         await this.AiAnalysis.scrollIntoViewIfNeeded();
-        await expect(this.AnalyzePopup).toHaveText('Analysis CompleteAI has analyzed the case.', { timeout: 120_000 });
-
+        await expect(this.AnalyzePopup).toHaveText('Analysis CompleteAI has analyzed the case.',{ timeout: 120_000 });
     }
+
     async ViweReport() {
         await expect(this.AnalysisReport).toContainText('1. TRIAGE LEVEL', { timeout: 3_000 });
     }
+
+///for scenario age field alphabets//////
     async PatientAgefieldValidation() {
         const secondRecord = records[1];
         this.age = secondRecord['Patient Age'];
@@ -400,11 +447,11 @@ export class MananFormPage {
         await expect(this.fileupload).toHaveAttribute('accept', '.pdf');
 
     }
-    async JpegReportUpload(){
-         await this.fileupload.setInputFiles("tests/TestData/Blood Reports/Hemogram.jpg");
+    async JpegReportUpload() {
+        await this.fileupload.setInputFiles("tests/TestData/Blood Reports/Hemogram.jpg");
     }
-    async JpegUploadValidate(){
-         await expect(this.fileupload).toHaveAttribute('accept', '.jpeg');
+    async JpegUploadValidate() {
+        await expect(this.fileupload).toHaveAttribute('accept', '.jpeg');
     }
     async UploadReportSizeValidation(){
         const UploadRecord = records[0];
@@ -447,7 +494,7 @@ export class MananFormPage {
     }
       
     async EnterRecordManuallyValidation(){
-         const tenthRecord = records[10]; // Get only the first row
+         const tenthRecord = records[10]; 
         this.age = tenthRecord['Patient Age'];
         this.gender = tenthRecord['Gender at Birth'];
         this.chif_complaint = tenthRecord['Chief Complaint'];
@@ -474,7 +521,7 @@ export class MananFormPage {
 
     }
     async EnterInvalidValuesManuallyInLabValues(){
-        const elevenRecord = records[11]; // Get only the first row
+        const elevenRecord = records[11]; 
         this.age = elevenRecord['Patient Age'];
         this.gender = elevenRecord['Gender at Birth'];
         this.chif_complaint = elevenRecord['Chief Complaint'];
@@ -495,8 +542,7 @@ export class MananFormPage {
         await this.CurrentMedication.fill(this.current_Medication);
         await this.analyzeCaseBtn.click();
         await this.page.waitForTimeout(6000);
-        // await expect(this.AnalyzePopup).toHaveText('Analysis CompleteAI has analyzed the case.', { timeout: 120_000 });
-    }
+       }
 
     async EnterInvalidValuesInLabValuesAssert(){
         await this.AiAnalysis.scrollIntoViewIfNeeded();
@@ -504,7 +550,7 @@ export class MananFormPage {
     }
 
     async EnterMultipleReportValidation(){
-        const firstRecord = records[0]; // Get only the first row
+        const firstRecord = records[0]; 
         this.age = firstRecord['Patient Age'];
         this.gender = firstRecord['Gender at Birth'];
         this.chif_complaint = firstRecord['Chief Complaint'];
@@ -609,8 +655,3 @@ export class MananFormPage {
     }
     }
 
-
-
-
-
-//export{ SignInPage };

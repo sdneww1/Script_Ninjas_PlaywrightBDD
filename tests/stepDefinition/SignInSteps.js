@@ -24,16 +24,6 @@ Then('User should be redirected to Manan Form page', async ({ signinPage }) => {
   await signinPage.mananFormURL();
 });
 
-// // Then('Then User should be redirected to Manan App page {string}', async ({ signinPage }, appPage) => {
-// // //  page.once('dialog', async dialog => {
-// // //   await dialog.accept(); // Clicks OK
-// // //  });
-// // //  await expect(page).toHaveURL(appPage);
-
-// // //await signinPage.mananAppURL(appPage);
-
-// // });
-
 When('User enters invalid {string} and {string}', async ({ signinPage }, Username, Password) => {
   await signinPage.InvalidCredentials(Username,Password);
 });
@@ -54,21 +44,11 @@ Then('User should be redirected to Manan Form page with Welcome to MANAN Medical
 Then('User should get pop up error message {string}', async ({ signinPage }, expectedMessage) => {
   await signinPage.loginFailedPopUp(expectedMessage);
 });
-// //<<<<<<< Shweta
-// When('When User enters valid Email Address and Password', async ({ signinPage }) => {
-//   // Step: When When User enters valid Email Address and Password
-//   // From: tests\features\SignIn.feature:9:9
-//   await signinPage.validUNandPwd();
-  
-// //=======
-// //>>>>>>> Supriya
+
 When('The user is on the Sign In form with signup button enable', async ({ signinPage }) => {
-  //await signinPage.
+
   await signinPage.signupisEnable();
 });
-// // When('The user is on the Sign In form', async ({ signinPage }) => {
-// //   await signinPage.loginisenable();
-// // });
 
 
 When('The user clicks on the Sign Up button', async ({ signinPage }) => {
@@ -97,7 +77,7 @@ When('The user enters valid json {string}, {string}, {string}, and {string}', as
 });
 
 When('The user enters invalid json {string}, {string}, {string}, and {string}', async ({ signinPage }, iun, iemail, ipwd, icpwd) => {
-  //  await signinPage.invalidsignUpDetailsJson(iun, iemail, ipwd, icpwd);   
+
    
 
 });
@@ -105,7 +85,6 @@ When('The user enters invalid json {string}, {string}, {string}, and {string}', 
 When('The user enters invalid json data at index {int}', async ({ signinPage }, index) => {
   await signinPage.fillInvalidSignUpForm(index);
 });
-
 
 
 When('The user clicks on Create Account', async ({ signinPage }) => {

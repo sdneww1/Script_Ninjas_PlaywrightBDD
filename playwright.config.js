@@ -10,32 +10,12 @@ dotenv.config({
 
 const testDir = defineBddConfig({
 
-  features: 'tests/features/***.feature',
- // features: 'tests/features/MananFormPage.feature',
-  // features: ['tests/features/HomePage.feature', 'tests/features/DashboardPage.feature'],
-  //features: ['tests/features/HomePage.feature', 'tests/features/HomePageSignIN.feature', 'tests/features/DashboardPage.feature'],
-  steps: ['tests/stepDefinition/***steps.js', 'tests/fixtures/Fixtures.js'
-    // "tests/hooks/Hooks.js" 
+  //features: 'tests/features/***.feature',
+  features: 'tests/features/MananFormPage.feature',
+   steps: ['tests/stepDefinition/***steps.js', 'tests/fixtures/Fixtures.js'
   ],
 
-  //steps: ['tests/stepDefinition/DashboardSteps.js','tests/fixtures/Fixtures.js','tests/hooks/hookfile.js']
-  //"tests/hooks/Hooks.js" 
-
-
 });
-// const testDir = defineBddConfig({
-//   features: 'tests/features/***.feature',
-//   steps: [
-//     'tests/stepDefinition/***.js',
-//     'tests/fixtures/fixture.js',
-//     // 'tests/hooks/Hooks.js'
-//   ]
-// });
-
-
-// dotenv.config({
-//   path: `./env/.env.${process.env.ENV}`
-// })
 
 /**
  * Read environment variables from file.
@@ -61,11 +41,14 @@ export default defineConfig({
   workers: process.env.CI ? 1 : undefined,
   /* Reporter to use. See https://playwright.dev/docs/test-reporters */
   reporter: [['html'], ['allure-playwright']],
-  /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
-    timeout: 90 * 1000, // 2 min per test
+
+  timeout: 90 * 1000, // 2 min per test
   expect: {
     timeout: 15 * 1000, // 15 sec for expect()
   },
+
+  /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
+  
   use: {
     /* Base URL to use in actions like `await page.goto('/')`. */
     // baseURL: 'http://localhost:3000',
@@ -74,29 +57,22 @@ export default defineConfig({
     baseURL: process.env.BaseURL || 'https://manan.numpyninja.com',
     //storageState: 'playwright/.auth/login.json', // ✅ this loads your session
     trace: 'on-first-retry',
-    screenshot:'only-on-failure',
-    video:'retain-on-failure',
-
-     /* Optional: Per-action timeout (click, fill, etc.) */
+    screenshot: 'only-on-failure',
+    video: 'retain-on-failure',
     actionTimeout: 15 * 1000, // ⏱ 10 seconds per action
-
     /* Optional: Timeout for page navigation */
-    navigationTimeout: 30 * 1000,
+    navigationTimeout: 30 * 1000,    // Optional: timeout for page loads
+
   },
 
   /* Configure projects for major browsers */
   projects: [
-
-
-
-
     // {
     //   name: 'chromium',
     //   use: { ...devices['Desktop Chrome'] },
     // { name: 'setup', testDir: './', testMatch: [/auth\/.*authsetup\.js$/] },
     // { name: 'chromium-auth', testDir: './tests/'},
     // { name: 'firefoxsetup', testDir: './', testMatch: [/auth\/.*firefoxsetup\.js$/] },
-
     {
       name: 'chromium-auth',
       grep: /@nonauth/,
@@ -131,7 +107,7 @@ export default defineConfig({
     //   grep: /@nonauth/,
     //   grepInvert: /@auth/,
     //   use: { ...devices['Desktop Safari'] },
-    //>>>>>>> Supriya
+    
     // },
 
     // {

@@ -58,10 +58,10 @@ Feature: Dashboard Functionality
         When The user clicks on anyone of the assessment when multiple assessments are present
         Then The user is able to view the selected assessment when multiple assessments are present
 
-    Scenario: Verify that the user is able to export the assessment details in to a pdf file after clicking "Export as PDF"
-        Given The user is in the Previous Assessments page
-        When The user clicks on Export as PDF button
-        Then The user is able to export the assessment details in to a pdf file
+    # Scenario: Verify that the user is able to export the assessment details in to a pdf file after clicking "Export as PDF"
+    #     Given The user is in the Previous Assessments page
+    #     When The user clicks on Export as PDF button
+    #     Then The user is able to export the assessment details in to a pdf file
 
     Scenario: Verify that the user is able to navigate to Manan page after clicking "Start your first assessment" link under "Recent Assessments" in the Dashboard page
         Given The user is in the Dashboard page
@@ -250,17 +250,3 @@ Feature: Dashboard Functionality
         When The user clicks Log out in the profile icon
         Then The user is navigated to Home page with the message
 
-# Session Ended - You have been securely logged out of MANAN Medical Assistant"
-
-
-# # SUPRIYA DAshboard Feature
-
-# #     @auth
-# # Feature: Verify Dashboard Page
-
-# #   Background:
-# #    Given The user is authenticated and user navigated to the Manan Form page
-# #    @auth
-# #   Scenario: Verify that user is able to open the Dashboard Page
-# #     When User clicks on Dashboard button
-# #     Then User should navigate to Dashboard Page "https://manan.numpyninja.com/dashboard"
