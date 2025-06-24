@@ -10,9 +10,9 @@ dotenv.config({
 
 const testDir = defineBddConfig({
 
-  features: 'tests/features/***.feature',
- // features: ['tests/features/MananFormPage.feature'],
- // features: ['tests/features/HomePage.feature', 'tests/features/HomePageSignIN.feature', 'tests/features/Dashboard.feature'],
+  //features: 'tests/features/***.feature',
+  // features: ['tests/features/MananFormPage.feature'],
+   features: ['tests/features/HomePage.feature', 'tests/features/HomePageSignIN.feature', 'tests/features/Dashboard.feature'],
   steps: ['tests/stepDefinition/***steps.js', 'tests/fixtures/Fixtures.js'
   ],
 
@@ -53,6 +53,7 @@ export default defineConfig({
   },
 
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
+  
   use: {
     /* Base URL to use in actions like `await page.goto('/')`. */
     // baseURL: 'http://localhost:3000',
