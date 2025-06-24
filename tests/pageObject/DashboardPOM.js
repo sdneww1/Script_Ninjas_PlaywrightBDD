@@ -269,7 +269,7 @@ export class DashboardPage {
         await this.page.selectOption('#billingCountry', 'CA');
         await this.postalBox.fill('L5N2X3');
         await this.page.getByLabel('Save my information for faster checkout').check();
-        await this.phoneBox.fill('4372543671');
+        await this.phoneBox.fill('2345465768');
         await this.subscribeBtn.waitFor({ state: 'visible' });
         await this.subscribeBtn.click({ timeout: 7000 });
     }
