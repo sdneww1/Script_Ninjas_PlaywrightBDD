@@ -4,6 +4,10 @@ import { test } from '../fixtures/Fixtures';
 import { MananFormPage } from '../pageObject/MananFormPOM';
 const { Given, When, Then } = createBdd(test);
 
+Given('The user is authenticated and user navigated to the Manan Form page', async ({ homePage }) => {
+  await homePage.appnavigteURL();
+});
+
 //////////Placeholder//////////////////
 When('The user should be able to view Enter patient age placeholder for Patients Age field', async ({ mananForm }) => {
    await console.log('User is able to view Enter patient age placeholder in field');
@@ -62,9 +66,12 @@ Then('The user should see the placeholder for Current Medications field', async 
 
 ////////Valid Details//////////////////////////////////
 
-Given('user is on the Manan Form Page', async ({ mananForm }) => {
-  console.log('user is on manan form page');
-  await mananForm.MananFormPage();
+Given('user is on the Manan Form Page', async ({ signinPage }) => {
+   console.log('user is on manan form page');
+  // await mananForm.MananFormPage();
+  //await homePage.appnavigteURL();
+  await signinPage.mananFormURL();
+
 });
 
 When('User Enter all deatils in the form and click on Analyze Case button', async ({ mananForm }) => {

@@ -68,10 +68,10 @@ export class MananFormPage {
         await expect(this.CurrentMedication).toBeVisible();
  }
 
-    async MananFormPage() {
-        await expect(this.LoginSuccessMsg).toBeVisible();
-        //await expect (this.patientAge).toBeVisible();
-    }
+    // async MananFormPage() {
+    //     await expect(this.LoginSuccessMsg).toBeVisible();
+    // //     //await expect (this.patientAge).toBeVisible();
+    //  }
 
     async FillFormDetails() {
         const firstRecord = records[0]; // Get only the first row
@@ -490,7 +490,7 @@ export class MananFormPage {
         await this.page.waitForTimeout(3000);
        // Wait for Analysis popup
         await this.AiAnalysis.scrollIntoViewIfNeeded();
-        await expect(this.AnalyzePopup).toHaveText('Analysis CompleteAI has analyzed the case.', { timeout: 120_000 });
+        await expect(this.AnalyzePopup).toHaveText('Analysis Complete AI has analyzed the case.', { timeout: 120_000 });
 
     }
     async EnterInvalidValuesManuallyInLabValues(){
