@@ -3,9 +3,13 @@ import { expect } from '@playwright/test';
 import { test } from '../fixtures/Fixtures';
 const { Given, When, Then } = createBdd(test);
 
-Given('The user is authenticated and on the Manan App page {string}', async ({ page }, urlapp) => {
-  await page.goto(urlapp);
-  await expect(page).toHaveURL(urlapp);
+// Given('The user is authenticated and on the Manan App page {string}', async ({ page }, urlapp) => {
+//   await page.goto(urlapp);
+//   await expect(page).toHaveURL(urlapp);
+// });
+
+Given('The user is authenticated and user navigated to the Manan Form page', async ({ homePage }) => {
+  await homePage.appnavigteURL();
 });
 
 When('The user clicks on Dashboard button in the Manan page', async ({ dashboardPage }) => {
@@ -162,24 +166,77 @@ Then('The error message is displayed in the Payments page', async ({ dashboardPa
 });
 
 When('The user enters Card Number in the payments page', async ({ dashboardPage }) => {
-  await dashboardPage.cardNumberBtnFill();
+  await dashboardPage.cardNumberBoxFill();
 });
 
 Then('The user is able to enter Card Number in the payments page', async ({ dashboardPage }) => {
-  await dashboardPage.cardNumberBtnCheck();
+  await dashboardPage.cardNumberBoxCheck();
 });
 
+When('The user enters Month and Year in the payments page', async ({ dashboardPage }) => {
+  await dashboardPage.monthYearBoxFill();
+});
 
+Then('The user is able to enter Month and Year in the payments page', async ({ dashboardPage }) => {
+  await dashboardPage.monthYearBoxCheck();
+});
 
+When('The user enters CVC in the payments page', async ({ dashboardPage }) => {
+  await dashboardPage.CVCBoxFill();
+});
 
+Then('The user is able to enter CVC in the payments page', async ({ dashboardPage }) => {
+  await dashboardPage.CVCBoxCheck();
+});
 
+When('The user enters Cardholder Name in the payments page', async ({ dashboardPage }) => {
+  await dashboardPage.nameBoxFill();
+});
 
+Then('The user is able to enter Cardholder Name in the payments page', async ({ dashboardPage }) => {
+  await dashboardPage.nameBoxCheck();
+});
 
+When('The user choose Country or Region from dropdown options in the payments page', async ({ dashboardPage }) => {
+  await dashboardPage.countryBoxFill();
+});
 
+Then('The user is able to choose Country or Region from dropdown options in the payments page', async ({ dashboardPage }) => {
+  await dashboardPage.countryBoxCheck();
+});
 
+When('The user enters Postal Code in the payments page', async ({ dashboardPage }) => {
+  await dashboardPage.postalBoxFill();
+});
 
+Then('The user is able to enter Postal Code in the payments page', async ({ dashboardPage }) => {
+  await dashboardPage.postalBoxCheck();
+});
 
+When('The user checks Securely save my information for {int}-click checkout in the payments page', async ({ dashboardPage }, arg) => {
+  await dashboardPage.checkoutBoxFill();
+});
 
+Then('The user is able to check Securely save my information for {int}-click checkout in the payments page', async ({ dashboardPage }, arg) => {
+  await dashboardPage.checkoutBoxCheck();
+});
+
+When('The user enters Phone Number after checking Securely save my information for {int}-click checkout in the payments page', async ({ dashboardPage }, arg) => {
+  await dashboardPage.checkoutBoxFill();
+  await dashboardPage.phoneBoxFill();
+});
+
+Then('The user is able to enter Phone Number in the payments page', async ({ dashboardPage }) => {
+  await dashboardPage.phoneBoxCheck();
+});
+
+When('The user clicks on Subscribe after entering all the details in the payments page', async ({ dashboardPage }) => {
+  await dashboardPage.subscribeBtnClick();
+});
+
+Then('The user is able to see success message displayed', async ({ dashboardPage }) => {
+  await dashboardPage.subscriptionSuccessText();
+});
 
 Then('The user is able view the Profile Icon in the Dashboard page', async ({ dashboardPage }) => {
   await dashboardPage.profileIconCheck();
@@ -296,6 +353,13 @@ Then('The user is able to view the success message Success - Your notification p
   await dashboardPage.saveChangesText();
 });
 
+When('The user clicks Log out in the profile icon', async ({ dashboardPage }) => {
+  await dashboardPage.logoutBtnClick();
+});
+
+Then('The user is navigated to Home page with the message', async ({ dashboardPage }) => {
+  await dashboardPage.logoutText();
+});
 
 // SUPRIYA Dashboard_Steps
 // import { createBdd } from 'playwright-bdd';
@@ -307,7 +371,7 @@ Then('The user is able to view the success message Success - Your notification p
 
 
 // Given('The user is authenticated and user navigated to the Manan Form page', async ({ homePage }) => {
-//   await homePage.appnavigteURL(); 
+//   await homePage.appnavigteURL();
 // });
 
 
