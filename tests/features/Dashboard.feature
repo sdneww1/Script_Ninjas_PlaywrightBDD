@@ -7,8 +7,8 @@ Feature: Dashboard Functionality
     #     And User click on SignIn button
     #     Then Then User should be redirected to Manan App page "https://manan.numpyninja.com/app"
 
-    Background:
-        Given The user is authenticated and on the Manan App page "https://manan.numpyninja.com/app"
+    # Background:
+        # Given The user is authenticated and on the Manan App page "https://manan.numpyninja.com/app"
 
     Scenario: Verify that the user is able to navigate to Dashboard page after clicking Dashboard button in the Manan page
         When The user clicks on Dashboard button in the Manan page
