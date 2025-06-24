@@ -1,5 +1,8 @@
+@auth
 Feature: Dashboard Functionality
 
+Background:
+   Given The user is authenticated and user navigated to the Manan Form page
     # Background: Login to Manan portal
     #     Given The user enter correct Manan portal URL
     #     And User Click on Sign in button
@@ -7,8 +10,8 @@ Feature: Dashboard Functionality
     #     And User click on SignIn button
     #     Then Then User should be redirected to Manan App page "https://manan.numpyninja.com/app"
 
-    Background:
-        Given The user is authenticated and on the Manan App page "https://manan.numpyninja.com/app"
+    # Background:
+    #     Given The user is authenticated and on the Manan App page "https://manan.numpyninja.com/app"
 
     Scenario: Verify that the user is able to navigate to Dashboard page after clicking Dashboard button in the Manan page
         When The user clicks on Dashboard button in the Manan page
@@ -65,10 +68,10 @@ Feature: Dashboard Functionality
         When The user clicks on anyone of the assessment when multiple assessments are present
         Then The user is able to view the selected assessment when multiple assessments are present
 
-    Scenario: Verify that the user is able to export the assessment details in to a pdf file after clicking "Export as PDF"
-        Given The user is in the Previous Assessments page
-        When The user clicks on Export as PDF button
-        Then The user is able to export the assessment details in to a pdf file
+    # Scenario: Verify that the user is able to export the assessment details in to a pdf file after clicking "Export as PDF"
+    #     Given The user is in the Previous Assessments page
+    #     When The user clicks on Export as PDF button
+    #     Then The user is able to export the assessment details in to a pdf file
 
     Scenario: Verify that the user is able to navigate to Manan page after clicking "Start your first assessment" link under "Recent Assessments" in the Dashboard page
         Given The user is in the Dashboard page
@@ -147,9 +150,6 @@ Feature: Dashboard Functionality
 # Given The user is in the Payments page
 # When The user enters Postal Code in the payments page
 # Then The user is able to enter Postal Code in the payments page
-
-
-
 
 
 

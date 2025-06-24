@@ -57,7 +57,7 @@ Feature: Manan Form Page Access via Home Page with Authentication
         Then User should be redirected to Manan Form page with Registration Successful Pop up
 
     @nonauth
-    Scenario: Verify ""Welcome to MANAN Medical Assistant." Pop up message on Manan Form Page
+    Scenario: Verify "Welcome to MANAN Medical Assistant." Pop up message on Manan Form Page
         Given The user enter correct Manan portal URL
         When User click on Sign in button
         And User navigates to Sign in pop up window.
@@ -66,7 +66,7 @@ Feature: Manan Form Page Access via Home Page with Authentication
         Then User should be redirected to Manan Form page with Welcome to MANAN Medical Assistant. Pop up Message
 
     @nonauth
-    Scenario Outline: Verify error message for invalid Username and Password
+    Scenario Outline: Verify error message for invalid Username and Password Sign IN Form
         Given The user enter correct Manan portal URL
         When User click on Sign in button
         And User navigates to Sign in pop up window.
@@ -82,7 +82,7 @@ Feature: Manan Form Page Access via Home Page with Authentication
 
 
     @nonauth
-    Scenario Outline: Verify pop up error message for invalid Username and Password
+    Scenario Outline: Verify pop up error message for invalid Username and Password Sign IN Form
         Given The user enter correct Manan portal URL
         When User click on Sign in button
         And User navigates to Sign in pop up window.
@@ -157,7 +157,7 @@ Feature: Manan Form Page Access via Home Page with Authentication
         And The user clicks on Create Account
         Then User should be redirected to Manan Form page
 
-   @nonauth
+    @nonauth
     Scenario Outline: Verify user gets validation error for invalid sign-up data from JSON
         Given The user enter correct Manan portal URL
         When User click on Sign in button
@@ -183,9 +183,47 @@ Feature: Manan Form Page Access via Home Page with Authentication
             | 10    |
             | 11    |
 
+    # @nonauth
+    # Scenario Outline: Verify pop up error message for already register Username Email Password and Confirm Password in Sign Up form
+    #     Given The user enter correct Manan portal URL
+    #     When User click on Sign in button
+    #     And User navigates to Sign in pop up window.
+    #     When The user enters invalid json "Username", "Email Address", "Password", and "Confirm Password"
+    #     And the user clicks the Sign-In button on the Sign-In popup
+    #     Then User should get pop up error message "<Error message>"
 
+    #     Examples:
+    #         | Username   | Email                | Password     | Confirm Password | Error message       |
+    #         | testuser1  | testuser21@gmail.com | testuser1    | testuser1        | Registration Failed |
+    #         | testuser21 | testuser1@gmail.com  | testuser1    | testuser1        | Registration Failed |
+    #         | testuser21 | testuser21@gmail.com | testuser@123 | testuser@123     | Registration Failed |
 
-#---------------------------------
+    # @nonauth
+    # Scenario Outline: Verify pop up error message for mismatch Password and Confirm Password in Sign Up form
+    #     Given The user enter correct Manan portal URL
+    #     When User click on Sign in button
+    #     And User navigates to Sign in pop up window.
+    #     When The user enters invalid json "Username", "Email Address", "Password", and "Confirm Password"
+    #     And the user clicks the Sign-In button on the Sign-In popup
+    #     Then User should get pop up error message "<Error message>"
+    #     Examples:
+    #         | Username   | Email               | Password  | Confirm Password | Error message          |
+    #         | testuser1  | testuser1@gmail.com | testuser1 | testuser2        | Passwords do not match |
+    #         | testuser21 | testuser1@gmail.com | testuser2 | testuser1        | Passwords do not match |
+
+    # Scenario Outline: Verify alert error message for Emailaddres field in Sign Up form
+    #     Given The user enter correct Manan portal URL
+    #     When User click on Sign in button
+    #     And User navigates to Sign in pop up window.
+    #     When The user enters invalid json "Username", "Email Address", "Password", and "Confirm Password"
+    #     And the user clicks the Sign-In button on the Sign-In popup
+    #     Then User should get alert error message "Error message"
+    #     Examples:
+    #         | Username   | Email    | Password  | Confirm Password |
+    #         | testuser1  | testting | testuser1 | testuser2        |
+    #         | testuser21 | 12345    | testuser2 | testuser1        |
+#------------------------------------------------------------------------------
+
 
 # @noauth
 # Scenario: Verify navigation to Manan Form Page via "Pricing Link" with authentication
@@ -199,13 +237,13 @@ Feature: Manan Form Page Access via Home Page with Authentication
 # When User click on View Pricing Plans button
 # Then User should navigate to Manan Form Page
 
-    # @nonauth
-    # Scenario: Verify user can register a new account using the 'Sign Up' page on the Manan Form Page.(invalid Json data)"
-    #     Given The user enter correct Manan portal URL
-    #     When User click on Sign in button
-    #     And User navigates to Sign in pop up window.
-    #     And The user clicks on the Sign Up button
-    #     Then The Sign Up form should be displayed
-    #     When The user enters invalid json "Username", "Email Address", "Password", and "Confirm Password"
-    #     And The user clicks on Create Account
-    #     Then User should get error message "Please fill in all fields"
+# @nonauth
+# Scenario: Verify user can register a new account using the 'Sign Up' page on the Manan Form Page.(invalid Json data)"
+#     Given The user enter correct Manan portal URL
+#     When User click on Sign in button
+#     And User navigates to Sign in pop up window.
+#     And The user clicks on the Sign Up button
+#     Then The Sign Up form should be displayed
+#     When The user enters invalid json "Username", "Email Address", "Password", and "Confirm Password"
+#     And The user clicks on Create Account
+#     Then User should get error message "Please fill in all fields"

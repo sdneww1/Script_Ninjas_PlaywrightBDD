@@ -3,6 +3,11 @@ import { expect } from '@playwright/test';
 import { test } from '../fixtures/Fixtures';
 const { Given, When, Then } = createBdd(test);
 
+Given('The user is authenticated and user navigated to the Manan Form page', async ({ homePage }) => {
+  await homePage.appnavigteURL();
+});
+
+
 //////////Placeholder//////////////////
 When('The user should be able to view Enter patient age placeholder for Patients Age field', async ({ mananForm }) => {
 

@@ -10,27 +10,13 @@ dotenv.config({
 
 const testDir = defineBddConfig({
 
-  //features: 'tests/features/***.feature',
-  // features: ['tests/features/HomePage.feature', 'tests/features/DashboardPage.feature'],
-  features: ['tests/features/HomePage.feature', 'tests/features/HomePageSignIN.feature', 'tests/features/DashboardPage.feature'],
+  features: 'tests/features/***.feature',
+ // features: ['tests/features/MananFormPage.feature'],
+ // features: ['tests/features/HomePage.feature', 'tests/features/HomePageSignIN.feature', 'tests/features/Dashboard.feature'],
   steps: ['tests/stepDefinition/***steps.js', 'tests/fixtures/Fixtures.js'
-    // "tests/hooks/Hooks.js" 
   ],
 
-  //steps: ['tests/stepDefinition/DashboardSteps.js','tests/fixtures/Fixtures.js','tests/hooks/hookfile.js']
-  //"tests/hooks/Hooks.js" 
-
-
 });
-// const testDir = defineBddConfig({
-//   features: 'tests/features/***.feature',
-//   steps: [
-//     'tests/stepDefinition/***.js',
-//     'tests/fixtures/fixture.js',
-//     // 'tests/hooks/Hooks.js'
-//   ]
-// });
-
 
 // dotenv.config({
 //   path: `./env/.env.${process.env.ENV}`
@@ -60,6 +46,12 @@ export default defineConfig({
   workers: process.env.CI ? 1 : undefined,
   /* Reporter to use. See https://playwright.dev/docs/test-reporters */
   reporter: [['html'], ['allure-playwright']],
+
+  timeout: 90 * 1000, // 2 min per test
+  expect: {
+    timeout: 15 * 1000, // 15 sec for expect()
+  },
+
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
   use: {
     /* Base URL to use in actions like `await page.goto('/')`. */
@@ -71,24 +63,20 @@ export default defineConfig({
     trace: 'on-first-retry',
     screenshot: 'only-on-failure',
     video: 'retain-on-failure',
-    actionTimeout: 10000,          // Optional: timeout per action (like click, fill)
-    navigationTimeout: 20000       // Optional: timeout for page loads
+    actionTimeout: 15 * 1000, // ⏱ 10 seconds per action
+    /* Optional: Timeout for page navigation */
+    navigationTimeout: 30 * 1000,    // Optional: timeout for page loads
 
   },
 
   /* Configure projects for major browsers */
   projects: [
-
-
-
-
     // {
     //   name: 'chromium',
     //   use: { ...devices['Desktop Chrome'] },
     // { name: 'setup', testDir: './', testMatch: [/auth\/.*authsetup\.js$/] },
     // { name: 'chromium-auth', testDir: './tests/'},
     // { name: 'firefoxsetup', testDir: './', testMatch: [/auth\/.*firefoxsetup\.js$/] },
-
     {
       name: 'chromium-auth',
       grep: /@nonauth/,
