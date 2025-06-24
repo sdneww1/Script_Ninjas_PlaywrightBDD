@@ -1,0 +1,41 @@
+# Page snapshot
+
+```yaml
+- banner:
+  - link "Back to NumpyNinja FZ LLC":
+    - /url: https://manan.numpyninja.com/subscription/cancel
+    - img
+    - text: Back
+    - img
+    - heading "NumpyNinja FZ LLC" [level=1]
+  - text: Test Mode
+- text: Subscribe to Premium Subscription $19.99 per month Unlimited AI analyses and premium features
+- main:
+  - list:
+    - listitem:
+      - link "Link logo":
+        - /url: https://link.com/
+        - img
+      - button "more":
+        - img
+    - listitem:
+      - text: Confirm it’s you Enter the code sent to (•••) ••• ••71 to use your saved information. You are currently testing and no code will be sent. Enter 000000 to continue.
+      - textbox "one-time-code-input-0"
+      - textbox "one-time-code-input-1"
+      - textbox "one-time-code-input-2"
+      - textbox "one-time-code-input-3"
+      - textbox "one-time-code-input-4"
+      - textbox "one-time-code-input-5"
+      - button "Send code to email instead"
+      - text: Logging in as testuser20@gmail.com
+  - button "Pay without Link"
+- contentinfo:
+  - link "Powered by Stripe":
+    - /url: https://stripe.com
+    - text: Powered by
+    - img "Stripe"
+  - link "Terms":
+    - /url: https://stripe.com/legal/end-users
+  - link "Privacy":
+    - /url: https://stripe.com/privacy
+```
