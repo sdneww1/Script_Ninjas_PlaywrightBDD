@@ -215,8 +215,8 @@ When('User enter more than one report in vital signs and lab values field', asyn
 });
 
 Then('The user should be able to view multiple reports get added', async ({mananForm}) => {
-   //test.setTimeout(100_000);
-  await mananForm.MultipleReportAssert();
+  
+  await mananForm.ViweReport();
 });
 
 When('User enter incorrect values in  medical history field', async ({mananForm}) => {

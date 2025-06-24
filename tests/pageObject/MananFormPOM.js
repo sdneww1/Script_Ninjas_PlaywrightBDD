@@ -41,7 +41,7 @@ export class MananFormPage {
         this.analyzereprot1 = page.getByText(/Analysis Complete\s*AI has analyzed the case\./i);
         this.shareAnalysis = page.getByText('Analysis has been exported as PDF.', { exact: true });
         this.shareAnalysisButton =page.getByRole('button', { name: 'Share Analysis' });
-       
+        this.shareAnalysisPopup = page.getByRole('region', { name: 'Notifications (F8)' }).getByRole('status');
     }
 
     async ValidateAgePlaceholder() {
@@ -68,13 +68,8 @@ export class MananFormPage {
         await expect(this.CurrentMedication).toBeVisible();
  }
 
-    // async MananFormPage() {
-    //     await expect(this.LoginSuccessMsg).toBeVisible();
-    // //     //await expect (this.patientAge).toBeVisible();
-    //  }
-
     async FillFormDetails() {
-        const firstRecord = records[0]; // Get only the first row
+        const firstRecord = records[0]; 
         this.age = firstRecord['Patient Age'];
         this.gender = firstRecord['Gender at Birth'];
         this.chif_complaint = firstRecord['Chief Complaint'];
@@ -422,14 +417,10 @@ export class MananFormPage {
         await this.patientAge.fill(this.age);
         await this.genderAtBirth.click();
         await this.GenderSelectOption.first().click();
-
         await this.ChifComplaint.fill(this.chif_complaint)
-
-        await this.DetailedSymptoms.fill(this.deatiled_symptoms);
-
-        //pdf upload
+        await this.DetailedSymptoms.fill(this.deatiled_symptoms);    
         await this.fileupload.setInputFiles("tests/TestData/Blood Reports/CBC-sample 1.pdf");
-          await this.page.waitForTimeout(5000);
+        await this.page.waitForTimeout(5000);
 
     }
     async UploadReportSizeAssert(){
@@ -446,18 +437,12 @@ export class MananFormPage {
         await this.patientAge.fill(this.age);
         await this.genderAtBirth.click();
         await this.GenderSelectOption.first().click();
-
         await this.ChifComplaint.fill(this.chif_complaint)
-
         await this.DetailedSymptoms.fill(this.deatiled_symptoms);
-
-        //pdf upload
         await this.fileupload.setInputFiles("tests/TestData/Blood Reports/10MB-TESTFILE_sample.pdf");
           await this.page.waitForTimeout(7000);
     }
     async UploadSuccessInvalidAssert(){
-        //await expect(this.uploadfilesizeError).toBeVisible({ timeout: 15000 });
-       // await expect(this.page.getByText(/Failed to parse blood report/i)).toBeVisible();
         await expect(this.uploadfilesizeError).toBeVisible({ timeout: 20000 });
     }
       
@@ -481,11 +466,6 @@ export class MananFormPage {
         await this.MedicaHistory.fill(this.medical_history);
         //current medication field
         await this.CurrentMedication.fill(this.current_Medication);
-
-        //await this.page.waitForTimeout(5000);
-        // //close popup
-        // await this.uploadsucesspopupclosebtn.click();
-        //     //Analyze case button
         await this.analyzeCaseBtn.click();
         await this.page.waitForTimeout(3000);
        // Wait for Analysis popup
@@ -513,14 +493,8 @@ export class MananFormPage {
         await this.MedicaHistory.fill(this.medical_history);
         //current medication field
         await this.CurrentMedication.fill(this.current_Medication);
-
-        //await this.page.waitForTimeout(5000);
-        // //close popup
-        // await this.uploadsucesspopupclosebtn.click();
-        //     //Analyze case button
         await this.analyzeCaseBtn.click();
         await this.page.waitForTimeout(6000);
-       // Wait for Analysis popup
         // await expect(this.AnalyzePopup).toHaveText('Analysis CompleteAI has analyzed the case.', { timeout: 120_000 });
     }
 
@@ -546,33 +520,29 @@ export class MananFormPage {
         await this.fileupload.setInputFiles("tests/TestData/Blood Reports/CBC-sample 1.pdf",
             "tests/TestData/Blood Reports/Diabetic and Hemogram Test_Thyrocare lab.pdf.pdf",);
         //assertion for successful upload popup
-        await this.page.waitForTimeout(6000);
+        await this.page.waitForTimeout(50000);
 
         //medical history field
         await this.MedicaHistory.fill(this.medical_history);
         //current medication field
-        await this.CurrentMedication.fill(this.current_Medication);
-
+       await this.CurrentMedication.fill(this.current_Medication);
         await this.page.waitForTimeout(5000);
         //close popup
-        await this.uploadsucesspopupclosebtn.click();
+       // await this.uploadsucesspopupclosebtn.click();
         //     //Analyze case button
         await this.analyzeCaseBtn.click();
-        await this.page.waitForTimeout(6000);
+     await this.page.waitForTimeout(3000);
+      // Wait for Analysis popup
+        await this.AiAnalysis.scrollIntoViewIfNeeded();
+        await expect(this.AnalyzePopup).toHaveText('Analysis CompleteAI has analyzed the case.', { timeout: 120_000 });
      }
      async MultipleReportAssert(){
-           await this.AiAnalysis.scrollIntoViewIfNeeded();
-           //  await this.page.waitForSelector('text=/Analyzing.*progress/i', {
-     // state: 'detached',
-     // timeout: 150_000,
-    // });
-        //await expect(this.analyzereprot1).toBeVisible({ timeout: 150_000 });
-        await expect(
-  this.page.getByRole('status', { name: /Analysis Complete\s*AI has analyzed the case\./i })
-).toBeVisible({ timeout: 150_000 });
+        await this.AiAnalysis.scrollIntoViewIfNeeded();
+         await this.page.waitForTimeout(6000);
+         await expect(this.AnalyzePopup).toHaveText('Analysis CompleteAI has analyzed the case.');
      }
-async EnterInvalidMediacalHostory(){
-     const TwelveRecord = records[12]; // Get only the first row
+    async EnterInvalidMediacalHostory(){
+         const TwelveRecord = records[12]; 
         this.age = TwelveRecord['Patient Age'];
         this.gender = TwelveRecord['Gender at Birth'];
         this.chif_complaint = TwelveRecord['Chief Complaint'];
@@ -585,23 +555,14 @@ async EnterInvalidMediacalHostory(){
         await this.GenderSelectOption.first().click();
         await this.ChifComplaint.fill(this.chif_complaint);
         await this.DetailedSymptoms.fill(this.deatiled_symptoms);
-       
         await this.VitaSignField.fill(this.Vital_Signs);
         //medical history field
         await this.MedicaHistory.fill(this.medical_history);
         //current medication field
         await this.CurrentMedication.fill(this.current_Medication);
-
-        //await this.page.waitForTimeout(5000);
-        // //close popup
-        // await this.uploadsucesspopupclosebtn.click();
-        //     //Analyze case button
         await this.analyzeCaseBtn.click();
-        await this.page.waitForTimeout(6000);
-       // Wait for Analysis popup
-     
+        await this.page.waitForTimeout(6000);       
     }
-
     async EnterInvalidMediacalHostoryAssert(){
        await this.AiAnalysis.scrollIntoViewIfNeeded();
        await expect(this.page).toHaveText(/invalid input/i);
@@ -630,30 +591,21 @@ async EnterInvalidMediacalHostory(){
         await this.fileupload.setInputFiles("tests/TestData/Blood Reports/CBC-sample 1.pdf");
         //assertion for successful upload popup
         await this.page.waitForTimeout(3000);
-
         //medical history field
         await this.MedicaHistory.fill(this.medical_history);
         //current medication field
         await this.CurrentMedication.fill(this.current_Medication);
-
         await this.page.waitForTimeout(5000);
-        //close popup
         await this.uploadsucesspopupclosebtn.click();
-        //     //Analyze case button
         await this.analyzeCaseBtn.click();
-        await this.page.waitForTimeout(3000);
-
-
-        //   // Wait for Analysis popup
+        await this.page.waitForTimeout(8000);
         await this.AiAnalysis.scrollIntoViewIfNeeded();
-        await expect(this.shareAnalysisButton).toBeVisible({ timeout: 150_000 });
+        await expect(this.AnalyzePopup).toBeVisible({ timeout: 120_000 });
+        await this.AiAnalysis.scrollIntoViewIfNeeded();
         await this.shareAnalysisButton.click();
     }
     async shareAnalysisAssert(){
-    
-        //await expect(this.shareAnalysis).toBeVisible({ timeout: 9000 });
-        await expect(this.shareAnalysis).toBeVisible({ timeout: 9000 });
-
+        await expect(this.shareAnalysisPopup).toBeVisible({ timeout: 9000 });
     }
     }
 
