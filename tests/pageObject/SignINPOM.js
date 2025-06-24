@@ -5,8 +5,6 @@ import { expect } from '@playwright/test';
 const signUpdata = require("../TestData/SignUpdata.json");
 const invalidsignUpdata = require("../TestData/InvalidSignUpdata.json");
 
-
-
 export class SignInPage {
 
   constructor(page) {
@@ -37,9 +35,7 @@ export class SignInPage {
 
 
   async errorMessage(errorText) {
-    //    const errorText = await this.erro
-    // rMsg.textContent();
-    //    console.log(errorText); // Should print: Please fill in all fields
+    
     await expect(this.errorMsg).toHaveText(errorText);
   }
 
@@ -125,4 +121,3 @@ async fillInvalidSignUpForm(index) {
     await this.createAccountbtn.click();
   }
 }
-

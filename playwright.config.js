@@ -10,17 +10,12 @@ dotenv.config({
 
 const testDir = defineBddConfig({
 
-  features: 'tests/features/***.feature',
-   //features: ['tests/features/MananFormPage.feature'],
-  // features: ['tests/features/HomePage.feature', 'tests/features/HomePageSignIN.feature', 'tests/features/Dashboard.feature'],
-  steps: ['tests/stepDefinition/***steps.js', 'tests/fixtures/Fixtures.js'
+  //features: 'tests/features/***.feature',
+  features: 'tests/features/MananFormPage.feature',
+   steps: ['tests/stepDefinition/***steps.js', 'tests/fixtures/Fixtures.js'
   ],
 
 });
-
-// dotenv.config({
-//   path: `./env/.env.${process.env.ENV}`
-// })
 
 /**
  * Read environment variables from file.
@@ -95,12 +90,16 @@ export default defineConfig({
 
       use: {
         ...devices['Desktop Chrome'],
-        // //        browserName: 'chromium',
-        // //     viewport: null, // disables Playwright default viewport
-        // //     launchOptions: {
-        // //       args: ['--start-maximized'],
-        storageState: 'playwright/.auth/login.json'
-      },
+            name: 'chromium',
+  use: {
+    browserName: 'chromium',
+    viewport: null, // disables Playwright default viewport
+    launchOptions: {
+      args: ['--start-maximized'],
+    },
+  },
+        storageState: 'playwright/.auth/login.json',
+     },
       dependencies: ['setup'],
     },
     //     // {
@@ -108,7 +107,7 @@ export default defineConfig({
     //   grep: /@nonauth/,
     //   grepInvert: /@auth/,
     //   use: { ...devices['Desktop Safari'] },
-    //>>>>>>> Supriya
+    
     // },
 
     // {

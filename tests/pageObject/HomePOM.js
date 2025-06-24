@@ -70,10 +70,6 @@ export class HomePage {
     await this.medicalTriagebtn.click({ noWaitAfter: true });
   }
 
-  // async aboutUsLinkClick()
-  // {
-  //   await this.aboutUsLink.click();
-  // }
 
   async aboutUsLinkClick() {
     await this.aboutUsLink.hover();
@@ -114,7 +110,7 @@ export class HomePage {
   }
 
 async signInPopup() {
-    //await this.page.waitForSelector('div[role="dialog"]');
+    
     await this.page.waitForSelector('div[role="dialog"]', { timeout: 15000 });
 
     // Check for welcome message
