@@ -1,0 +1,15 @@
+{
+  "cookies": [
+    {
+      "name": "manan_session",
+      "value": "s%3Aw-Ird9GLLKXGYKJcsAci11KGswV_eciB.6bT%2BhSdfC7WmUDYe5mylE5l4BxdtbNizEKIKsFVMc4Q",
+      "domain": "manan.numpyninja.com",
+      "path": "/",
+      "expires": 1750579735.537171,
+      "httpOnly": true,
+      "secure": true,
+      "sameSite": "Lax"
+    }
+  ],
+  "origins": []
+}

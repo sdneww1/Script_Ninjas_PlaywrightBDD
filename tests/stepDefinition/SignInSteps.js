@@ -1,43 +1,93 @@
 import { createBdd } from 'playwright-bdd';
 import { expect } from '@playwright/test';
+import { test } from '../fixtures/Fixtures';
+const { Before, After, Given, When, Then } = createBdd(test);
 
-const { Given, When, Then } = createBdd();
 
-
-
-Given('The user enter correct Manan portal URL {string}', async ({page}, url) => {
-  await page.goto(url);
+When('User navigates to Sign in pop up window.', async ({ homePage }) => {
+  await homePage.signInPopup();
 });
 
-When('The user should be able to land on Manan portal with Title {string}', async ({page}, title) => {
-  await expect(page).toHaveTitle(title);
+When('the user clicks the Sign-In button on the Sign-In popup', async ({ homePage }) => {
+  await homePage.SignInbtnPopupPage();
 });
 
-When('User Click on Sign in button', async ({page}) => {
-await page.getByRole('button', { name: 'Sign In' }).nth(0).click();
+When('User enters valid Username and Password', async ({ signinPage }) => {
+  await signinPage.validUNandPwd();  
 });
 
-Then('User should navingate to Sign in pop up window.', async ({page}) => {
-    await page.waitForSelector('div[role="dialog"]');
-  // Check for welcome message
- const welcomeHeading = page.locator('h2:has-text("Welcome to MANAN")');
-  await expect(welcomeHeading).toBeVisible();
+When('User click on SignIn button in sign in pop up window', async ({ signinPage }) => {
+  await signinPage.SignInbtnfirst();  
+});  
+      
+Then('User should be redirected to Manan Form page', async ({ signinPage }) => {
+  await signinPage.mananFormURL();
 });
 
-When('When User enters valid username {string} and valid password {string}', async ({page}, UN, Pwd) => {
-  await page.getByPlaceholder('Enter your username').fill(UN);
-  await page.getByPlaceholder('Enter your password').fill(Pwd);
+When('User enters invalid {string} and {string}', async ({ signinPage }, Username, Password) => {
+  await signinPage.InvalidCredentials(Username,Password);
 });
 
-When('User click on SignIn button', async ({page}) => {
-  await page.getByRole('button', { name: 'Sign In' }).first().click();
-  await page.pause();
+Then('User should get error message {string}', async ({ signinPage }, errorText) => {
+ await signinPage.errorMessage(errorText);  
 });
 
-Then('Then User should be redirected to Manan App page {string}', async ({page}, appPage) => {
- page.once('dialog', async dialog => {
-  await dialog.accept(); // Clicks OK
- });
- await expect(page).toHaveURL(appPage);
+Then('User should be redirected to Manan Form page with Registration Successful Pop up', async ({ signinPage }) => {
+ await signinPage.authSuccessfulPopUp();
 
 });
+
+Then('User should be redirected to Manan Form page with Welcome to MANAN Medical Assistant. Pop up Message', async ({ signinPage }) => { 
+  await signinPage.authSuccessfulPopUpMsg();
+});
+
+Then('User should get pop up error message {string}', async ({ signinPage }, expectedMessage) => {
+  await signinPage.loginFailedPopUp(expectedMessage);
+});
+
+When('The user is on the Sign In form with signup button enable', async ({ signinPage }) => {
+
+  await signinPage.signupisEnable();
+});
+
+
+When('The user clicks on the Sign Up button', async ({ signinPage }) => {
+    await signinPage.signUpClick();
+});
+
+Then('The Sign Up form should be displayed', async ({ signinPage }) => {
+ await signinPage.signinEnable();
+
+});
+
+When('The user enters valid {string}, {string}, {string}, and {string}', async ({ signinPage }, signUpUN,signUpEmail,signUpPwd,signUpConfirmPwd) => {
+ 
+  await signinPage.signUpformDetails(signUpUN,signUpEmail,signUpPwd,signUpConfirmPwd)
+
+});
+When('The user enters invalid {string}, {string}, {string}, and {string}', async ({ signinPage }, signUpUN,signUpEmail,signUpPwd,signUpConfirmPwd) => {
+ 
+  await signinPage.signUpformDetails(signUpUN,signUpEmail,signUpPwd,signUpConfirmPwd)
+
+});
+
+When('The user enters valid json {string}, {string}, {string}, and {string}', async ({ signinPage }, un, email, pwd, cpwd) => {
+    await signinPage.signUpformDetailsJson(un, email, pwd, cpwd);
+
+});
+
+When('The user enters invalid json {string}, {string}, {string}, and {string}', async ({ signinPage }, iun, iemail, ipwd, icpwd) => {
+
+   
+
+});
+
+When('The user enters invalid json data at index {int}', async ({ signinPage }, index) => {
+  await signinPage.fillInvalidSignUpForm(index);
+});
+
+
+When('The user clicks on Create Account', async ({ signinPage }) => {
+  await signinPage.signUpCreataccountClick();
+});
+
