@@ -11,11 +11,14 @@ dotenv.config({
 const testDir = defineBddConfig({
 
   features: 'tests/features/***.feature',
- // features: 'tests/features/MananFormPage.feature',
-   steps: ['tests/stepDefinition/***steps.js', 'tests/fixtures/Fixtures.js'
+  //
+  // features: ['tests/features/MananFormPage.feature','tests/features/HomePage.feature','tests/features/HomePageSignIN.feature'],
+    steps: ['tests/stepDefinition/***steps.js', 
+      'tests/fixtures/Fixtures.js'
   ],
 
 });
+// features: 'tests/features/MananFormPage.feature',
 
 /**
  * Read environment variables from file.
@@ -66,7 +69,110 @@ export default defineConfig({
   },
 
   /* Configure projects for major browsers */
-  projects: [
+//   projects: [
+//     // {
+//     //   name: 'chromium',
+//     //   use: { ...devices['Desktop Chrome'] },
+//     // { name: 'setup', testDir: './', testMatch: [/auth\/.*authsetup\.js$/] },
+//     // { name: 'chromium-auth', testDir: './tests/'},
+//     // { name: 'firefoxsetup', testDir: './', testMatch: [/auth\/.*firefoxsetup\.js$/] },
+//     {
+//       name: 'chromium-auth',
+//       grep: /@nonauth/,
+//       grepInvert: /@auth/,
+//       use: {
+//         ...devices['Desktop Chrome'],
+//       },
+//     },
+
+//     { name: 'setup', testDir: './', testMatch: [/auth\/.*authsetup\.js$/] },
+//     {
+//       name: 'chromium',
+//       grep: /@auth/,
+//       grepInvert: /@nonauth/,
+//       use: { ...devices['Desktop Chrome'],
+//             name: 'chromium',
+//   use: {
+//     browserName: 'chromium',
+//     viewport: null, // disables Playwright default viewport
+//     launchOptions: {
+//       args: ['--start-maximized'],
+//     },
+//   },storageState: 'playwright/.auth/login.json',
+//      },
+//       dependencies: ['setup'],
+//     },
+//     //     // {
+//     //   name: 'webkit-nonauth',
+//     //   grep: /@nonauth/,
+//     //   grepInvert: /@auth/,
+//     //   use: { ...devices['Desktop Safari'] },
+    
+//     // },
+
+//     // {
+//     //   name: 'webkit-auth',
+//     //   grep: /@nonauth/,
+//     //   grepInvert: /@auth/,
+//     //   use: { ...devices['Desktop Safari'],
+//     //      storageState: 'playwright/.auth/loginfirefox.json',
+//     //    },
+//     // },
+
+
+//     // {
+//     //   name: 'firefox-nonauth',
+//     //     grep: /@nonauth/,
+//     //   grepInvert: /@auth/,
+//     //     timeout: 90 * 1000, 
+//     //   use: { ...devices['Desktop Firefox'] ,
+//     //         },
+
+//     // },
+
+//     // {
+//     //   name: 'firefoxsetup1',
+//     //     grep: /@auth/,
+//     //   grepInvert: /@nonauth/,
+//     //     timeout: 60 * 1000, // ⬅️ 60 seconds (you can customize)
+//     //   use: { ...devices['Desktop Firefox'] ,
+//     //       storageState: 'playwright/.auth/loginfirefox.json',
+//     //   },
+//     //         dependencies: ['firefoxsetup'],
+
+//     // },
+
+
+//     /* Test against mobile viewports. */
+//     // {
+//     //   name: 'Mobile Chrome',
+//     //   use: { ...devices['Pixel 5'] },
+//     // },
+//     // {
+//     //   name: 'Mobile Safari',
+//     //   use: { ...devices['iPhone 12'] },
+//     // },
+
+//     /* Test against branded browsers. */
+//     // {
+//     //   name: 'Microsoft Edge',
+//     //   use: { ...devices['Desktop Edge'], channel: 'msedge' },
+//     // },
+//     // {
+//     //   name: 'Google Chrome',
+//     //   use: { ...devices['Desktop Chrome'], channel: 'chrome' },
+//     // },
+//   ],
+
+//   /* Run your local dev server before starting the tests */
+//   // webServer: {
+//   //   command: 'npm run start',
+//   //   url: 'http://localhost:3000',
+//   //   reuseExistingServer: !process.env.CI,
+//   // },
+// });
+
+projects: [
     // {
     //   name: 'chromium',
     //   use: { ...devices['Desktop Chrome'] },
@@ -81,8 +187,7 @@ export default defineConfig({
         ...devices['Desktop Chrome'],
       },
     },
-
-    { name: 'setup', testDir: './', testMatch: [/auth\/.*authsetup\.js$/] },
+      { name: 'setup', testDir: './', testMatch: [/auth\/.*authsetup\.js$/] },
     {
       name: 'chromium',
       grep: /@auth/,
@@ -90,26 +195,20 @@ export default defineConfig({
 
       use: {
         ...devices['Desktop Chrome'],
-            name: 'chromium',
-  use: {
-    browserName: 'chromium',
-    viewport: null, // disables Playwright default viewport
-    launchOptions: {
-      args: ['--start-maximized'],
-    },
-  },
-        storageState: 'playwright/.auth/login.json',
-     },
+        // //        browserName: 'chromium',
+        // //     viewport: null, // disables Playwright default viewport
+        // //     launchOptions: {
+        // //       args: ['--start-maximized'],
+        storageState: 'playwright/.auth/login.json'
+      },
       dependencies: ['setup'],
     },
-    //     // {
+  //     // {
     //   name: 'webkit-nonauth',
     //   grep: /@nonauth/,
     //   grepInvert: /@auth/,
     //   use: { ...devices['Desktop Safari'] },
-    
     // },
-
     // {
     //   name: 'webkit-auth',
     //   grep: /@nonauth/,
@@ -118,31 +217,24 @@ export default defineConfig({
     //      storageState: 'playwright/.auth/loginfirefox.json',
     //    },
     // },
-
-
     // {
     //   name: 'firefox-nonauth',
     //     grep: /@nonauth/,
     //   grepInvert: /@auth/,
-    //     timeout: 90 * 1000, 
+    //     timeout: 90 * 1000,
     //   use: { ...devices['Desktop Firefox'] ,
     //         },
-
     // },
-
     // {
     //   name: 'firefoxsetup1',
     //     grep: /@auth/,
     //   grepInvert: /@nonauth/,
-    //     timeout: 60 * 1000, // ⬅️ 60 seconds (you can customize)
+    //     timeout: 60 * 1000, // :arrow_left: 60 seconds (you can customize)
     //   use: { ...devices['Desktop Firefox'] ,
     //       storageState: 'playwright/.auth/loginfirefox.json',
     //   },
     //         dependencies: ['firefoxsetup'],
-
     // },
-
-
     /* Test against mobile viewports. */
     // {
     //   name: 'Mobile Chrome',
@@ -152,7 +244,6 @@ export default defineConfig({
     //   name: 'Mobile Safari',
     //   use: { ...devices['iPhone 12'] },
     // },
-
     /* Test against branded browsers. */
     // {
     //   name: 'Microsoft Edge',
@@ -163,7 +254,6 @@ export default defineConfig({
     //   use: { ...devices['Desktop Chrome'], channel: 'chrome' },
     // },
   ],
-
   /* Run your local dev server before starting the tests */
   // webServer: {
   //   command: 'npm run start',
@@ -171,4 +261,8 @@ export default defineConfig({
   //   reuseExistingServer: !process.env.CI,
   // },
 });
+
+
+
+
 
