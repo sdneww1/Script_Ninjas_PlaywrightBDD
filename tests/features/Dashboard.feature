@@ -249,4 +249,3 @@ Feature: Dashboard Functionality
         Given The user is in the Profile Icon page
         When The user clicks Log out in the profile icon
         Then The user is navigated to Home page with the message
-
