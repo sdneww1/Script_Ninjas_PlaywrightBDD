@@ -65,6 +65,8 @@ Then('The user should see the placeholder for Current Medications field', async 
 Given('user is on the Manan Form Page', async ({ signinPage }) => {
   console.log('user is on manan form page');
   await signinPage.mananFormURL();
+ //await homePage.appnavigteURL();
+
 });
 
 When('User Enter all deatils in the form and click on Analyze Case button', async ({ mananForm }) => {

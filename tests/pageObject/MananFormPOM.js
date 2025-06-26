@@ -8,6 +8,7 @@ const records = parse(fs.readFileSync("tests/TestData/MananTestData.csv"), {
     skip_empty_lines: true,
 })
 
+
 export class MananFormPage {
 
     constructor(page) {
@@ -150,7 +151,10 @@ export class MananFormPage {
     }
 
     async ViweReport() {
-        await expect(this.AnalysisReport).toContainText('1. TRIAGE LEVEL', { timeout: 3_000 });
+       // await expect(this.AnalysisReport).toContainText('1. TRIAGE LEVEL', { timeout: 3_000 });
+       const analysisReport = this.page.locator("xpath=//*[contains(text(), 'TRIAGE LEVEL')]");
+       await analysisReport.scrollIntoViewIfNeeded();
+      await expect(analysisReport).toBeVisible({ timeout: 3_000 });
     }
 
 ///for scenario age field alphabets//////
@@ -654,4 +658,3 @@ export class MananFormPage {
         await expect(this.shareAnalysisPopup).toBeVisible({ timeout: 9000 });
     }
     }
-

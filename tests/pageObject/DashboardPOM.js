@@ -275,7 +275,7 @@ export class DashboardPage {
     }
 
     async subscriptionSuccessText() {
-        const subsSucessText = this.page.getByText('Subscription Activated');
+        const subsSucessText = this.page.getByText(/^Subscription Activated$/);
         await expect(subsSucessText).toBeVisible();
     }
 
