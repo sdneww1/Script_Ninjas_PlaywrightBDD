@@ -192,8 +192,6 @@ export class MananFormPage {
         expect(ageNumber).toBeGreaterThan(0);
         expect(ageNumber).toBeLessThanOrEqual(120);
     }
-
-
     async PatientAgefieldBlankValidation() {
         const thirdRecord = records[2];
         this.age = thirdRecord['Patient Age'];
