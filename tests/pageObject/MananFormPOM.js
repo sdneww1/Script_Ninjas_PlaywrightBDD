@@ -8,6 +8,7 @@ const records = parse(fs.readFileSync("tests/TestData/MananTestData.csv"), {
     skip_empty_lines: true,
 })
 
+
 export class MananFormPage {
 
     constructor(page) {
@@ -657,4 +658,3 @@ export class MananFormPage {
         await expect(this.shareAnalysisPopup).toBeVisible({ timeout: 9000 });
     }
     }
-

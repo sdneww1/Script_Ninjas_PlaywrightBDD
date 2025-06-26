@@ -7,8 +7,8 @@ setupfirefox('firefoxauthenticate', async ({ page }) => {
 
     await page.goto(loginUrl);
     await page.getByRole('button', { name: 'Sign In' }).nth(0).click();
-    await page.getByPlaceholder('Enter your username').fill(process.env.EMAIL);
-    await page.getByPlaceholder('Enter your password').fill(process.env.PASSWORD);
+    await page.getByPlaceholder('Enter your username').fill(process.env.NewUser1);
+    await page.getByPlaceholder('Enter your password').fill(process.env.NewPassword1);
     await page.getByRole('button', { name: 'Sign In' }).first().click();
     // Wait for successful navigation
     await page.waitForURL('**/app', { timeout: 15000 });

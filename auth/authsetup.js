@@ -7,8 +7,8 @@ setup('authenticate', async ({ page }) => {
 
     await page.goto(loginUrl);
     await page.getByRole('button', { name: 'Sign In' }).nth(0).click();
-    await page.getByPlaceholder('Enter your username').fill(process.env.EMAIL);
-    await page.getByPlaceholder('Enter your password').fill(process.env.PASSWORD);
+    await page.getByPlaceholder('Enter your username').fill(process.env.NewUser);
+    await page.getByPlaceholder('Enter your password').fill(process.env.NewPassword);
     await page.getByRole('button', { name: 'Sign In' }).first().click();
     await page.waitForURL('**/app', { timeout: 15000 });
     await page.context().storageState({ path: authFile });

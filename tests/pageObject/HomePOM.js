@@ -17,6 +17,9 @@ export class HomePage {
     this.aboutUsLink = page.getByRole('link', { name: 'About Us' });
     this.blogLink = page.getByRole('link', { name: 'Blog' });
     this.contactUSLink = page.getByRole('link', { name: 'Contact Us' });
+    
+
+
   }
 
   async openBaseURL() {
@@ -68,8 +71,15 @@ export class HomePage {
   async medicalTriageAssessmentbtn() {
     await this.medicalTriagebtn.hover(); // hover first
     await this.medicalTriagebtn.click({ noWaitAfter: true });
+    // then click
+
+    //await this.medicalTriagebtn.click();
   }
 
+  // async aboutUsLinkClick()
+  // {
+  //   await this.aboutUsLink.click();
+  // }
 
   async aboutUsLinkClick() {
     await this.aboutUsLink.hover();
@@ -96,6 +106,7 @@ export class HomePage {
 
   }
   async contactUSLinkClick() {
+      await this.contactUSLink.waitFor({ state: 'visible', timeout: 10000 }); // wait until visible
     await this.contactUSLink.hover();
     await this.contactUSLink.click({ noWaitAfter: true });
   }
@@ -110,7 +121,7 @@ export class HomePage {
   }
 
 async signInPopup() {
-    
+    //await this.page.waitForSelector('div[role="dialog"]');
     await this.page.waitForSelector('div[role="dialog"]', { timeout: 15000 });
 
     // Check for welcome message
@@ -122,5 +133,8 @@ async signInPopup() {
 
     await this.signINbtnpopUp.click({ noWaitAfter: true });
   }
+
+  
+
 }
 

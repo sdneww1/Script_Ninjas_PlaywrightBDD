@@ -11,14 +11,13 @@ dotenv.config({
 const testDir = defineBddConfig({
 
   features: 'tests/features/***.feature',
-  //
-  // features: ['tests/features/MananFormPage.feature','tests/features/HomePage.feature','tests/features/HomePageSignIN.feature'],
-    steps: ['tests/stepDefinition/***steps.js', 
-      'tests/fixtures/Fixtures.js'
-  ],
+ // features: ['tests/features/Dashboard.feature'],
+//  features: ['tests/features/HomePage.feature', 'tests/features/HomePageSignIN.feature'],
+  //features: ['tests/features/HomePage.feature', 'tests/features/HomePageSignIN.feature', 'tests/features/Dashboard.feature'],
+  steps: ['tests/stepDefinition/***steps.js', 'tests/fixtures/Fixtures.js','tests/hooks/hooks.js'],
 
 });
-// features: 'tests/features/MananFormPage.feature',
+
 
 /**
  * Read environment variables from file.
@@ -51,7 +50,7 @@ export default defineConfig({
   },
 
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
-  
+
   use: {
     /* Base URL to use in actions like `await page.goto('/')`. */
     // baseURL: 'http://localhost:3000',
@@ -69,110 +68,7 @@ export default defineConfig({
   },
 
   /* Configure projects for major browsers */
-//   projects: [
-//     // {
-//     //   name: 'chromium',
-//     //   use: { ...devices['Desktop Chrome'] },
-//     // { name: 'setup', testDir: './', testMatch: [/auth\/.*authsetup\.js$/] },
-//     // { name: 'chromium-auth', testDir: './tests/'},
-//     // { name: 'firefoxsetup', testDir: './', testMatch: [/auth\/.*firefoxsetup\.js$/] },
-//     {
-//       name: 'chromium-auth',
-//       grep: /@nonauth/,
-//       grepInvert: /@auth/,
-//       use: {
-//         ...devices['Desktop Chrome'],
-//       },
-//     },
-
-//     { name: 'setup', testDir: './', testMatch: [/auth\/.*authsetup\.js$/] },
-//     {
-//       name: 'chromium',
-//       grep: /@auth/,
-//       grepInvert: /@nonauth/,
-//       use: { ...devices['Desktop Chrome'],
-//             name: 'chromium',
-//   use: {
-//     browserName: 'chromium',
-//     viewport: null, // disables Playwright default viewport
-//     launchOptions: {
-//       args: ['--start-maximized'],
-//     },
-//   },storageState: 'playwright/.auth/login.json',
-//      },
-//       dependencies: ['setup'],
-//     },
-//     //     // {
-//     //   name: 'webkit-nonauth',
-//     //   grep: /@nonauth/,
-//     //   grepInvert: /@auth/,
-//     //   use: { ...devices['Desktop Safari'] },
-    
-//     // },
-
-//     // {
-//     //   name: 'webkit-auth',
-//     //   grep: /@nonauth/,
-//     //   grepInvert: /@auth/,
-//     //   use: { ...devices['Desktop Safari'],
-//     //      storageState: 'playwright/.auth/loginfirefox.json',
-//     //    },
-//     // },
-
-
-//     // {
-//     //   name: 'firefox-nonauth',
-//     //     grep: /@nonauth/,
-//     //   grepInvert: /@auth/,
-//     //     timeout: 90 * 1000, 
-//     //   use: { ...devices['Desktop Firefox'] ,
-//     //         },
-
-//     // },
-
-//     // {
-//     //   name: 'firefoxsetup1',
-//     //     grep: /@auth/,
-//     //   grepInvert: /@nonauth/,
-//     //     timeout: 60 * 1000, // ⬅️ 60 seconds (you can customize)
-//     //   use: { ...devices['Desktop Firefox'] ,
-//     //       storageState: 'playwright/.auth/loginfirefox.json',
-//     //   },
-//     //         dependencies: ['firefoxsetup'],
-
-//     // },
-
-
-//     /* Test against mobile viewports. */
-//     // {
-//     //   name: 'Mobile Chrome',
-//     //   use: { ...devices['Pixel 5'] },
-//     // },
-//     // {
-//     //   name: 'Mobile Safari',
-//     //   use: { ...devices['iPhone 12'] },
-//     // },
-
-//     /* Test against branded browsers. */
-//     // {
-//     //   name: 'Microsoft Edge',
-//     //   use: { ...devices['Desktop Edge'], channel: 'msedge' },
-//     // },
-//     // {
-//     //   name: 'Google Chrome',
-//     //   use: { ...devices['Desktop Chrome'], channel: 'chrome' },
-//     // },
-//   ],
-
-//   /* Run your local dev server before starting the tests */
-//   // webServer: {
-//   //   command: 'npm run start',
-//   //   url: 'http://localhost:3000',
-//   //   reuseExistingServer: !process.env.CI,
-//   // },
-// });
-
-projects: [
+  projects: [
     // {
     //   name: 'chromium',
     //   use: { ...devices['Desktop Chrome'] },
@@ -180,61 +76,83 @@ projects: [
     // { name: 'chromium-auth', testDir: './tests/'},
     // { name: 'firefoxsetup', testDir: './', testMatch: [/auth\/.*firefoxsetup\.js$/] },
     {
-      name: 'chromium-auth',
+      name: 'chromium-nonauth',
       grep: /@nonauth/,
       grepInvert: /@auth/,
       use: {
         ...devices['Desktop Chrome'],
       },
     },
-      { name: 'setup', testDir: './', testMatch: [/auth\/.*authsetup\.js$/] },
+
+    { name: 'setup', testDir: './', testMatch: [/auth\/.*authsetup\.js$/] },
     {
-      name: 'chromium',
+      name: 'chromium-auth',
       grep: /@auth/,
       grepInvert: /@nonauth/,
 
       use: {
         ...devices['Desktop Chrome'],
-        // //        browserName: 'chromium',
-        // //     viewport: null, // disables Playwright default viewport
-        // //     launchOptions: {
-        // //       args: ['--start-maximized'],
+        actionTimeout: 15 * 1000,
+         navigationTimeout: 30 * 1000,
+        viewport: { width: 1920, height: 1080 }, 
         storageState: 'playwright/.auth/login.json'
       },
       dependencies: ['setup'],
     },
-  //     // {
-    //   name: 'webkit-nonauth',
-    //   grep: /@nonauth/,
-    //   grepInvert: /@auth/,
-    //   use: { ...devices['Desktop Safari'] },
-    // },
-    // {
-    //   name: 'webkit-auth',
-    //   grep: /@nonauth/,
-    //   grepInvert: /@auth/,
-    //   use: { ...devices['Desktop Safari'],
-    //      storageState: 'playwright/.auth/loginfirefox.json',
-    //    },
-    // },
+   {
+      name: 'webkit-nonauth',
+      grep: /@nonauth/,
+      grepInvert: /@auth/,
+      use: { ...devices['Desktop Safari'] },
+
+    },
+
+    { name: 'firefoxsetup', testDir: './', testMatch: [/auth\/.*firefoxsetup\.js$/] },
+    {
+      name: 'webkit-auth',
+      grep: /@auth/,
+      grepInvert: /@nonauth/,
+      timeout: 120 * 1000,
+      use: {
+        ...devices['Desktop Safari'],
+        //actionTimeout: 20000,
+        actionTimeout: 15 * 1000,
+         navigationTimeout: 30 * 1000,
+       // navigationTimeout: 40000,
+        viewport: { width: 1920, height: 1080 }, 
+        storageState: 'playwright/.auth/loginfirefox.json',
+      },
+      dependencies: ['firefoxsetup'],
+    },
+
+
     // {
     //   name: 'firefox-nonauth',
-    //     grep: /@nonauth/,
+    //   grep: /@nonauth/,
     //   grepInvert: /@auth/,
-    //     timeout: 90 * 1000,
-    //   use: { ...devices['Desktop Firefox'] ,
-    //         },
+    //   timeout: 120 * 1000,
+    //   use: {
+    //     ...devices['Desktop Firefox'],
+    //     actionTimeout: 20000,
+    //     navigationTimeout: 40000,
+    //     viewport: { width: 1920, height: 1080 }, // ✅ simulate maximized window
+    //   },
     // },
+    // { name: 'firefoxsetup', testDir: './', testMatch: [/auth\/.*firefoxsetup\.js$/] },
+
     // {
     //   name: 'firefoxsetup1',
     //     grep: /@auth/,
     //   grepInvert: /@nonauth/,
-    //     timeout: 60 * 1000, // :arrow_left: 60 seconds (you can customize)
+    //     timeout: 60 * 1000, // ⬅️ 60 seconds (you can customize)
     //   use: { ...devices['Desktop Firefox'] ,
     //       storageState: 'playwright/.auth/loginfirefox.json',
     //   },
     //         dependencies: ['firefoxsetup'],
+
     // },
+
+
     /* Test against mobile viewports. */
     // {
     //   name: 'Mobile Chrome',
@@ -244,6 +162,7 @@ projects: [
     //   name: 'Mobile Safari',
     //   use: { ...devices['iPhone 12'] },
     // },
+
     /* Test against branded browsers. */
     // {
     //   name: 'Microsoft Edge',
@@ -254,6 +173,7 @@ projects: [
     //   use: { ...devices['Desktop Chrome'], channel: 'chrome' },
     // },
   ],
+
   /* Run your local dev server before starting the tests */
   // webServer: {
   //   command: 'npm run start',
@@ -261,8 +181,4 @@ projects: [
   //   reuseExistingServer: !process.env.CI,
   // },
 });
-
-
-
-
 
