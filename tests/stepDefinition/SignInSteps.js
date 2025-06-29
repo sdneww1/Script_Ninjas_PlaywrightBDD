@@ -42,8 +42,12 @@ Then('User should be redirected to Manan Form page with Welcome to MANAN Medical
   await signinPage.authSuccessfulPopUpMsg();
 });
 
-Then('User should get pop up error message {string}', async ({ signinPage }, expectedMessage) => {
-  await signinPage.loginFailedPopUp(expectedMessage);
+Then('User should get login failed pop up error message {string}', async ({ signinPage }, loginfailMessage) => {
+  await signinPage.loginFailedPopUp(loginfailMessage)
+});
+
+Then('User should get pop up error message {string}', async ({ signinPage }, PexpectedMessage) => {
+  await signinPage.signuploginFailedPopUppwd(PexpectedMessage);
 });
 
 When('The user is on the Sign In form with signup button enable', async ({ signinPage }) => {
@@ -92,3 +96,13 @@ When('The user clicks on Create Account', async ({ signinPage }) => {
   await signinPage.signUpCreataccountClick();
 });
 
+
+Then('User should get email alert error message {string}', async ({ signinPage }, alertexpectedMessage) => {
+  await signinPage.loginFailedalertmessage(alertexpectedMessage);
+});
+
+
+
+Then('User should get registration failed error message in Signup form', async ({ signinPage }) => {
+  await signinPage.signupregfailedpopup();
+});

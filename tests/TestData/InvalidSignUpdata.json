@@ -70,5 +70,35 @@
         "email_id": "",
         "passwd": "",
         "confirmPass": "testuser34"
+    },
+    {
+        "user": "testuser34",
+        "email_id": "testuser34@gmail.com",
+        "passwd": "testuser34",
+        "confirmPass": "testuser44"
+    },
+    {
+        "user": "testuser34",
+        "email_id": "testuser34@gmail.com",
+        "passwd": "testuser44",
+        "confirmPass": "testuser34"
+    },
+    {
+        "user": "testuser34",
+        "email_id": "testuser34",
+        "passwd": "testuser34",
+        "confirmPass": "testuser34"
+    },
+    {
+        "user": "testuser34",
+        "email_id": "testuser@.com",
+        "passwd": "testuser34",
+        "confirmPass": "testuser34"
+    },
+     {
+        "user": "testuser34",
+        "email_id": "testuser34@gmail.com",
+        "passwd": "testuser34",
+        "confirmPass": "testuser34"
     }
 ]

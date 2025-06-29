@@ -11,8 +11,8 @@ dotenv.config({
 const testDir = defineBddConfig({
 
   features: 'tests/features/***.feature',
- // features: ['tests/features/Dashboard.feature'],
-//  features: ['tests/features/HomePage.feature', 'tests/features/HomePageSignIN.feature'],
+  //features: ['tests/features/AHomePageSignIN.feature'],
+ //features: ['tests/features/AHomePage.feature', 'tests/features/AHomePageSignIN.feature'],
   //features: ['tests/features/HomePage.feature', 'tests/features/HomePageSignIN.feature', 'tests/features/Dashboard.feature'],
   steps: ['tests/stepDefinition/***steps.js', 'tests/fixtures/Fixtures.js','tests/hooks/hooks.js'],
 

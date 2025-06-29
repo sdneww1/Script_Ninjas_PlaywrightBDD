@@ -35,7 +35,7 @@ export class SignInPage {
 
 
   async errorMessage(errorText) {
-    
+
     await expect(this.errorMsg).toHaveText(errorText);
   }
 
@@ -58,16 +58,47 @@ export class SignInPage {
 
   async authSuccessfulPopUpMsg() {
     const popupMsg = this.page.locator('div.grid.gap-1');
-     await popupMsg.waitFor({ state: 'visible', timeout: 10000 }); // Wait up to 10s
+    await popupMsg.waitFor({ state: 'visible', timeout: 10000 }); // Wait up to 10s
     await expect(popupMsg).toContainText('Welcome to MANAN Medical Assistant.');
   }
 
-  async loginFailedPopUp(expectedMessage) {
-    const errorTitle = this.page.locator('div.text-sm.font-semibold');
-    const actualMessage = await errorTitle.textContent();
+  async loginFailedPopUp(loginfailMessage) {
+    const popupfailedMsg = this.page.locator('div.grid.gap-1');
+    await popupfailedMsg.waitFor({ state: 'visible', timeout: 10000 }); // Wait up to 10s
+    await expect(popupfailedMsg).toContainText(loginfailMessage);
+    // const errorTitle = this.page.locator('div.text-sm.font-semibold');
+    // const actualMessage = await errorTitle.textContent();
 
-    await expect(actualMessage?.trim()).toBe(expectedMessage);
+    // await expect(actualMessage?.trim()).toBe(expectedMessage);
   }
+
+  async signupregfailedpopup() {
+    const errorContainer = this.page.locator('div.grid.gap-1');
+    await expect(errorContainer).toHaveText(/Registration Failed\s*Username already exists/);
+    // await expect(this.page.locator('div.text-sm.font-semibold')).toHaveText(regfailmsg);
+  }
+  // async signuploginFailedPopUppwd(PexpectedMessage) {
+  //   //const passwordMismatchError = page.getByText('Passwords do not match');
+  //   const passwordMismatchError = this.page.locator('p', { hasText: 'Passwords do not match' });
+
+  //   const actualMessage = await passwordMismatchError.textContent();
+
+  //   await expect(actualMessage?.trim()).toBe(PexpectedMessage);
+  // }
+  async signuploginFailedPopUppwd(expectedMessage) {
+  const passwordMismatchError = this.page.locator('p.text-sm.text-red-400');
+
+  await expect(passwordMismatchError).toHaveText(expectedMessage);
+}
+
+
+  async loginFailedalertmessage(alertexpectedMessage) {
+    const emailInput = this.page.locator('input[placeholder="Enter your email address"]');
+    const message = await emailInput.evaluate(el => el.validationMessage);
+    console.log('Validation message:', message);
+    expect(message).toContain(alertexpectedMessage);
+  }
+
 
   async loginFailedPopUpMsg() {
     const popupLoginFailedMsg = this.page.locator('div.grid.gap-1');
@@ -95,28 +126,25 @@ export class SignInPage {
   }
 
   async signUpformDetailsJson() {
-  await this.usernameInput.fill(signUpdata.user);
-  await this.emailInput.fill(signUpdata.email_id);
-  await this.createpwdInput.fill(signUpdata.passwd);
-  await this.confirmpwdInput.fill(signUpdata.confirmPass);
-}
-// async invalidsignUpDetailsJson() {
-//   await this.usernameInput.fill(invalidsignUpdata.user);
-//   await this.emailInput.fill(invalidsignUpdata.email_id);
-//   await this.createpwdInput.fill(invalidsignUpdata.passwd);
-//   await this.confirmpwdInput.fill(invalidsignUpdata.confirmPass);
-// }
+    await this.usernameInput.fill(signUpdata.user);
+    await this.emailInput.fill(signUpdata.email_id);
+    await this.createpwdInput.fill(signUpdata.passwd);
+    await this.confirmpwdInput.fill(signUpdata.confirmPass);
+  }
+  // async invalidsignUpDetailsJson() {
+  //   await this.usernameInput.fill(invalidsignUpdata.user);
+  //   await this.emailInput.fill(invalidsignUpdata.email_id);
+  //   await this.createpwdInput.fill(invalidsignUpdata.passwd);
+  //   await this.confirmpwdInput.fill(invalidsignUpdata.confirmPass);
+  // }
 
-async fillInvalidSignUpForm(index) {
-  const data = invalidsignUpdata[index];
-  await this.usernameInput.fill(data.user || '');
-  await this.emailInput.fill(data.email_id || '');
-  await this.createpwdInput.fill(data.passwd || '');
-  await this.confirmpwdInput.fill(data.confirmPass || '');
-}
-
-
-
+  async fillInvalidSignUpForm(index) {
+    const data = invalidsignUpdata[index];
+    await this.usernameInput.fill(data.user || '');
+    await this.emailInput.fill(data.email_id || '');
+    await this.createpwdInput.fill(data.passwd || '');
+    await this.confirmpwdInput.fill(data.confirmPass || '');
+  }
   async signUpCreataccountClick() {
     await this.createAccountbtn.click();
   }
