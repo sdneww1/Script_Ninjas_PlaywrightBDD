@@ -1,9 +1,11 @@
 import { createBdd } from 'playwright-bdd';
 import { expect } from '@playwright/test';
 import { test } from '../fixtures/Fixtures';
+import { getAllTestData } from '../Utils/csvUtils.js';
 import { MananFormPage } from '../pageObject/MananFormPOM';
 const { Given, When, Then } = createBdd(test);
 
+const testDataList = getAllTestData('tests/TestData/MananTestData.csv');
 
 Given('The user is authenticated and user navigated to the Manan Form page', async ({ homePage }) => {
   await homePage.appnavigteURL();
@@ -65,22 +67,24 @@ Then('The user should see the placeholder for Current Medications field', async 
 Given('user is on the Manan Form Page', async ({ signinPage }) => {
   console.log('user is on manan form page');
   await signinPage.mananFormURL();
- //await homePage.appnavigteURL();
+  //await homePage.appnavigteURL();
 
 });
 
 When('User Enter all deatils in the form and click on Analyze Case button', async ({ mananForm }) => {
-  await mananForm.FillFormDetails();
+  const data = testDataList[0];
+  await mananForm.FillFormDetails(data);
 });
 
 Then('The user should able to see the detailed analysis', async ({ mananForm }) => {
-  await mananForm.ViweReport();
+  await mananForm.ViewReport();
 
 });
 
 //////////invalid Age//////////////
 When('Then User enter any of Alphabets in Age field', async ({ mananForm }) => {
-  await mananForm.PatientAgefieldValidation();
+  const data = testDataList[1];
+  await mananForm.PatientAgefieldValidation(data);
 
 });
 
@@ -90,7 +94,8 @@ Then('The user should able to view error alert Enter valid Age', async ({ mananF
 
 /////////Blank Age////////////////
 When('User leave Patient Age field blank And enter other fields', async ({ mananForm }) => {
-  await mananForm.PatientAgefieldBlankValidation();
+  const data = testDataList[2];
+  await mananForm.PatientAgefieldBlankValidation(data);
 });
 
 Then('The user should able to view error alert Patient age is required', async ({ mananForm }) => {
@@ -99,7 +104,8 @@ Then('The user should able to view error alert Patient age is required', async (
 
 //////////Gender field////
 When('User does not select gender filed And enter other fields', async ({ mananForm }) => {
-  await mananForm.ValidateGenderField();
+  const data = testDataList[4];
+  await mananForm.ValidateGenderField(data);
 });
 
 Then('The user should able to view error alert Gender is required', async ({ mananForm }) => {
@@ -107,7 +113,8 @@ Then('The user should able to view error alert Gender is required', async ({ man
 });
 ///////age limit///
 When('User enters higher in the age text box', async ({ mananForm }) => {
-  await mananForm.AgeLimitValidation();
+  const data = testDataList[3];
+  await mananForm.AgeLimitValidation(data);
 });
 
 Then('The user should able to view error message Age must be below range should be displayed', async ({ mananForm }) => {
@@ -116,7 +123,8 @@ Then('The user should able to view error message Age must be below range should 
 
 /////chief complaint///
 When('User leave Chief Complaint field blank And enter other fields', async ({ mananForm }) => {
-  await mananForm.ChiefComplaintBlankValidation();
+  const data = testDataList[5];
+  await mananForm.ChiefComplaintBlankValidation(data);
 });
 
 Then('The user should able to view error alert Chief complaint is required', async ({ mananForm }) => {
@@ -124,7 +132,8 @@ Then('The user should able to view error alert Chief complaint is required', asy
 });
 
 When('User enter numbers in Chief Complaint field', async ({ mananForm }) => {
-  await mananForm.chiefComplaintInvaliddata();
+  const data = testDataList[6];
+  await mananForm.chiefComplaintInvaliddata(data);
 });
 
 Then('The user should able to  view error message enter valid data in Chief Complaint field', async ({ mananForm }) => {
@@ -133,15 +142,17 @@ Then('The user should able to  view error message enter valid data in Chief Comp
 
 ///////////detailed Symptoms//
 When('User leave Detailed Symptoms field blank And enter other fields', async ({ mananForm }) => {
-  await mananForm.DetailedSymptomsBlankValidation();
+  const data = testDataList[7];
+  await mananForm.DetailedSymptomsBlankValidation(data);
 });
 
-Then('The user should able to view error message  that User should enter Detailed Symptoms', async ({ mananForm }) => {
+Then('The user should able to view error message that User should enter Detailed Symptoms', async ({ mananForm }) => {
   await mananForm.DetailedSymptomsAssertion();
 });
 
 When('User enter invalid data in Detailed Symptoms field', async ({ mananForm }) => {
-  await mananForm.DeatiledSymptomsInvalidValidation();
+  const data = testDataList[8];
+  await mananForm.DeatiledSymptomsInvalidValidation(data);
 });
 
 Then('The user should able to view error alert Detailed Symptoms field', async ({ mananForm }) => {
@@ -174,7 +185,8 @@ Then('The user should be able to see the jpeg uploaded successfully', async ({ m
 });
 
 When('User is uploading the pdf file with size less than 5MB', async ({ mananForm }) => {
-  await mananForm.UploadReportSizeValidation();
+  const data = testDataList[0];
+  await mananForm.UploadReportSizeValidation(data);
 });
 
 Then('The user should be able to see the file get uploaded successfully', async ({ mananForm }) => {
@@ -182,7 +194,8 @@ Then('The user should be able to see the file get uploaded successfully', async 
 });
 
 When('User is uploading the pdf file with size more than 5MB', async ({ mananForm }) => {
-  await mananForm.UploadReportInvalidValidation();
+  const data = testDataList[0];
+  await mananForm.UploadReportInvalidValidation(data);
 });
 
 Then('The user should be able to see error message', async ({ mananForm }) => {
@@ -190,15 +203,18 @@ Then('The user should be able to see error message', async ({ mananForm }) => {
 });
 
 When('User enter all BP,HR,RR,Temp,SpO2 values in the field', async ({ mananForm }) => {
-  await mananForm.EnterRecordManuallyValidation();
+  const data = testDataList[0];
+  await mananForm.EnterRecordManuallyValidation(data);
 });
 
 Then('The user should able to view the detailed analysis report', async ({ mananForm }) => {
-  await mananForm.ViweReport();
+  const data = testDataList[0];
+  await mananForm.ViewReport();
 });
 
 When('Verify error message for entering wrong values in vital signs and lab values', async ({ mananForm }) => {
-  await mananForm.EnterInvalidValuesManuallyInLabValues();
+  const data = testDataList[11];
+  await mananForm.EnterInvalidValuesManuallyInLabValues(data);
 });
 
 Then('The user should able to view error message', async ({ mananForm }) => {
@@ -206,22 +222,32 @@ Then('The user should able to view error message', async ({ mananForm }) => {
 });
 
 When('User enter more than one report in vital signs and lab values field', async ({ mananForm }) => {
-  await mananForm.EnterMultipleReportValidation();
+  const data = testDataList[0];
+  await mananForm.EnterMultipleReportValidation(data);
 });
 
 Then('The user should be able to view multiple reports get added', async ({ mananForm }) => {
-
-  await mananForm.ViweReport();
+  await mananForm.ViewReport();
 });
 
 When('User enter incorrect values in  medical history field', async ({ mananForm }) => {
-  //await mananForm.EnterInvalidMediacalHostory();
+  const data = testDataList[12];
+  await mananForm.EnterInvalidMediacalHostory(data);
 });
 
 Then('The user should be able to see error message in medical history field', async ({ mananForm }) => {
-  //await mananForm.EnterInvalidMediacalHostoryAssert();
+  await mananForm.EnterInvalidMediacalHostoryAssert();
 });
 
+When('User enter incorrect values in  Current Medications field', async ({ mananForm }) => {
+  const data = testDataList[13];
+  await mananForm.EnterInvalidCurrentMedication(data);
+});
+
+Then('The user should be able to see error message in Current Medications field', async ({ mananForm }) => {
+  const data = testDataList[14];
+  await mananForm.InvalidCurrentMedicationAssert(data);
+});
 
 When('User validate if  Analyze Case button should be visible in Manan app Page', async ({ mananForm }) => {
   await mananForm.Analyzebuttonvisible();
@@ -232,10 +258,20 @@ Then('The user should able to see Analyze Case button in manan app Page', async 
 });
 
 When('User is clicking on share analysis button', async ({ mananForm }) => {
-  await mananForm.shareAnalysisValidate();
+  const data = testDataList[0];
+  await mananForm.shareAnalysisValidate(data);
 });
 
 Then('The user should view pdf generated success message', async ({ mananForm }) => {
   await mananForm.shareAnalysisAssert();
+});
+
+When('User enter all the deatils in the form', async ({ mananForm }) => {
+  const data = testDataList[0];
+  await mananForm.SubscriptionLimitValidation(data);
+});
+
+Then('The user should view the alert of subscription limit reached', async ({ mananForm }) => {
+  await mananForm.SubscriptionLimitAssert();
 });
 

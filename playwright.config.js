@@ -11,11 +11,10 @@ dotenv.config({
 const testDir = defineBddConfig({
 
   features: 'tests/features/***.feature',
-  //features: ['tests/features/AHomePageSignIN.feature'],
+ //features: ['tests/features/AHomePageSignIN.feature'],
  //features: ['tests/features/AHomePage.feature', 'tests/features/AHomePageSignIN.feature'],
   //features: ['tests/features/HomePage.feature', 'tests/features/HomePageSignIN.feature', 'tests/features/Dashboard.feature'],
   steps: ['tests/stepDefinition/***steps.js', 'tests/fixtures/Fixtures.js','tests/hooks/hooks.js'],
-
 });
 
 
@@ -94,7 +93,7 @@ export default defineConfig({
         ...devices['Desktop Chrome'],
         actionTimeout: 15 * 1000,
          navigationTimeout: 30 * 1000,
-        viewport: { width: 1920, height: 1080 }, 
+        viewport: { width: 1366, height: 768 }, 
         storageState: 'playwright/.auth/login.json'
       },
       dependencies: ['setup'],
@@ -119,7 +118,7 @@ export default defineConfig({
         actionTimeout: 15 * 1000,
          navigationTimeout: 30 * 1000,
        // navigationTimeout: 40000,
-        viewport: { width: 1920, height: 1080 }, 
+        viewport: { width: 1366, height: 768 }, 
         storageState: 'playwright/.auth/loginfirefox.json',
       },
       dependencies: ['firefoxsetup'],
@@ -181,4 +180,3 @@ export default defineConfig({
   //   reuseExistingServer: !process.env.CI,
   // },
 });
-
